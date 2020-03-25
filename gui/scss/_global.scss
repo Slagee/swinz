@@ -28,6 +28,29 @@ a {
   }
 }
 
+// Custom icons
+#customCross {
+  margin-right: -0.5rem;
+  margin-top: -0.2rem;
+}
+
+// Rooms body
+#roomsCardBody {
+  padding: 0.5rem;
+}
+
+// Adding room button
+#addNewRoom {
+  padding: 0.3rem 0.5rem;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+}
+
+.nav-link {
+  padding: 1rem;
+}
+
 // Set container padding to match gutter width instead of default 15px
 .container,
 .container-fluid {
