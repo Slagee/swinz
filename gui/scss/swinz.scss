@@ -3,6 +3,7 @@
 
 // Import Bootstrap
 @import "../vendor/bootstrap/scss/bootstrap.scss";
+@import "../vendor/jquery-ui/css/jquery-ui.min.css";
 
 // Import Custom SB Admin 2 Mixins and Components
 @import "mixins.scss";
@@ -16,3 +17,4 @@
 @import "login.scss";
 @import "error.scss";
 @import "footer.scss";
+@import "slider.scss";

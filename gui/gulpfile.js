@@ -70,7 +70,12 @@ function modules() {
       '!./node_modules/jquery/dist/core.js'
     ])
     .pipe(gulp.dest('./vendor/jquery'));
-  return merge(bootstrapJS, bootstrapSCSS, chartJS, fontAwesome, jquery, jqueryEasing);
+  // jQuery ui
+  var jqueryUiJS = gulp.src('./node_modules/jquery-ui-dist/jquery-ui.min.js')
+    .pipe(gulp.dest('./vendor/jquery-ui/js'));
+  var jqueryUiCss = gulp.src('./node_modules/jquery-ui-dist/jquery-ui.min.css')
+    .pipe(gulp.dest('./vendor/jquery-ui/css'));
+  return merge(bootstrapJS, bootstrapSCSS, chartJS, fontAwesome, jquery, jqueryEasing, jqueryUiJS, jqueryUiCss);
 }
 
 // CSS task

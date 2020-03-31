@@ -13,7 +13,9 @@
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="css/swinz.min.css" rel="stylesheet">
@@ -46,7 +48,8 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-200 small">Lukáš Lazar</span>
                 <i class="fas fa-user-circle fa-2x"></i>
               </a>
@@ -88,90 +91,96 @@
           <!-- Content Row -->
           <div class="row">
             <!-- Illustrations -->
-            <div class="col-xl-5 col-md-8 mb-4 pt-4 mx-auto">
+            <div class="col-xl-6 col-md-8 mb-4 pt-4 mx-auto">
               <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <div class="row">
-                    <a class="col-md-6" href="/room.html">
-                      <h4 class="m-0 font-weight-bold text-center">Místnosti</h4>
-                    </a>
-                    <a class="col-md-6" href="">
-                      <h4 class="m-0 font-weight-bold text-center">Statistiky</h4>
-                    </a>
-                  </hr>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-lg-3 col-2 text-right">
-                      <i class="fas fa-check-circle text-success"></i>
-                    </div>
-                    <div class="col-lg-4 col-6 text-left">
-                      <span class="font-weight-bold"> OBÝVACÍ POKOJ</span>
-                    </div>
-                    <div class="col-lg-4 col-4">
-                      <span class="font-weight-bold">20.8 °C</span>
+                <div class="card border border-secondary">
+                  <div class="card-header py-3">
+                    <div class="row">
+                      <a class="col-md-6" href="/room.html">
+                        <h4 class="m-0 font-weight-bold text-center">Místnosti</h4>
+                      </a>
+                      <a class="col-md-6" href="">
+                        <h4 class="m-0 font-weight-bold text-center">Statistiky</h4>
+                      </a>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-lg-3 col-2 text-right">
-                      <i class="fas fa-times-circle text-danger"></i>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-4 col-2 text-right">
+                        <i class="fas fa-check-circle text-success"></i>
+                      </div>
+                      <div class="col-lg-4 col-6 text-left">
+                        <span class="font-weight-bold"> OBÝVACÍ POKOJ</span>
+                      </div>
+                      <div class="col-lg-4 col-4">
+                        <span class="font-weight-bold">20.8 °C</span>
+                      </div>
                     </div>
-                    <div class="col-lg-4 col-6 text-left">
-                      <span class="font-weight-bold"> KUCHYŇ</span>
+                    <div class="row">
+                      <div class="col-lg-4 col-2 text-right">
+                        <i class="fas fa-times-circle text-danger"></i>
+                      </div>
+                      <div class="col-lg-4 col-6 text-left">
+                        <span class="font-weight-bold"> KUCHYŇ</span>
+                      </div>
+                      <div class="col-lg-4 col-4">
+                        <span class="font-weight-bold">22.8 °C</span>
+                      </div>
                     </div>
-                    <div class="col-lg-4 col-4">
-                      <span class="font-weight-bold">22.8 °C</span>
+                    <div class="row">
+                      <div class="col-lg-4 col-2 text-right">
+                        <i class="fas fa-check-circle text-success"></i>
+                      </div>
+                      <div class="col-lg-4 col-6 text-left">
+                        <span class="font-weight-bold"> LOŽNICE</span>
+                      </div>
+                      <div class="col-lg-4 col-4">
+                        <span class="font-weight-bold">19.9 °C</span>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-3 col-2 text-right">
-                      <i class="fas fa-check-circle text-success"></i>
+                    <div class="row">
+                      <div class="col-lg-4 col-2 text-right">
+                        <i class="fas fa-times-circle text-danger"></i></i>
+                      </div>
+                      <div class="col-lg-4 col-6 text-left">
+                        <span class="font-weight-bold"> JÍDELNA</span>
+                      </div>
+                      <div class="col-4">
+                        <span class="font-weight-bold">22.4 °C</span>
+                      </div>
                     </div>
-                    <div class="col-lg-4 col-6 text-left">
-                      <span class="font-weight-bold"> LOŽNICE</span>
+                    <div class="row pt-5">
+                      <div class="col-12">
+                        <h6 class="m-0 font-weight-bold text-center">POŽADOVANÁ TEPLOTA: <span id="amount-label"></span>
+                        </h6>
+                        <div class="row justify-content-center">
+                          <div class="col-6" id="slider"></div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-lg-4 col-4">
-                      <span class="font-weight-bold">19.9 °C</span>
+                    <div class="row">
+                      <button class="btn btn-danger mx-auto" type="button">
+                        <i class="fas fa-times"></i>
+                      </button>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-3 col-2 text-right">
-                      <i class="fas fa-times-circle text-danger"></i></i>
+                    <div class="row">
+                      <div class="chart-pie pt-4 pb-2">
+                        <h6 class="m-0 font-weight-bold text-center">TOPENÍ PŘES ROK</h6>
+                        <canvas id="myPieChart"></canvas>
+                      </div>
                     </div>
-                    <div class="col-lg-4 col-6 text-left">
-                      <span class="font-weight-bold"> JÍDELNA</span>
-                    </div>
-                    <div class="col-4">
-                      <span class="font-weight-bold">22.4 °C</span>
-                    </div>
-                  </div>
-                  <div class="row pt-5">
-                    <div class="mx-auto">
-                      <span class="font-weight-bold">POŽADOVANÁ TEPLOTA: 22.0</span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <button class="btn btn-danger mx-auto" type="button">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                  <div class="row">
-                    <div class="chart-pie pt-4 pb-2">
-                      <h6 class="m-0 font-weight-bold text-center">TOPENÍ PŘES ROK</h6>
-                      <canvas id="myPieChart"></canvas>
-                    </div>
-                  </div>
-                  <div class="row pt-2">
-                    <div class="col-12 text-center">
-                      <span class="mr-2">
-                        <i class="fas fa-circle text-success"></i> Zapnuto
-                      </span>
-                      <span class="mr-2">
-                        <i class="fas fa-circle text-danger"></i> Vypnuto
-                      </span>
-                      <span class="mr-2">
-                        <i class="fas fa-circle text-grey"></i> Zbývá
-                      </span>
+                    <div class="row pt-2">
+                      <div class="col-12 text-center">
+                        <span class="mr-2">
+                          <i class="fas fa-circle text-success"></i> Zapnuto
+                        </span>
+                        <span class="mr-2">
+                          <i class="fas fa-circle text-danger"></i> Vypnuto
+                        </span>
+                        <span class="mr-2">
+                          <i class="fas fa-circle text-grey"></i> Zbývá
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -212,6 +221,7 @@
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="vendor/jquery-ui/js/jquery-ui.min.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="js/swinz.min.js"></script>
@@ -221,6 +231,7 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="js/demo/slider.js"></script>
 
 </body>
 
