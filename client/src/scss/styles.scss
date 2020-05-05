@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import "variables.scss";
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+html, body {
+    font-family: 'Nunito', sans-serif;
+}
+// Import Custom SB Admin 2 Mixins and Components
+@import "mixins.scss";
+@import "global.scss";
+@import "utilities.scss";
+
+// Custom Components
+@import "dropdowns.scss";
+@import "navs.scss";
+@import "login.scss";
+@import "error.scss";
+@import "footer.scss";
+@import "slider.scss";

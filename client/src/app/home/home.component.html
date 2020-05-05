@@ -1,0 +1,94 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Přehled domu</h1>
+</div>
+
+<div class="row">
+    <!-- Illustrations -->
+    <div class="col-xl-4 col-md-8 mb-4 pt-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card border border-secondary">
+                <div class="card-header py-3">
+                    <div class="row">
+                        <a class="col-md-6" href="/rooms">
+                            <h4 class="m-0 font-weight-bold text-center">Místnosti</h4>
+                        </a>
+                        <a class="col-md-6" href="">
+                            <h4 class="m-0 font-weight-bold text-center">Statistiky</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-3 col-2 text-right">
+                            <fa-icon [icon]="faCheckCircle" class="text-success"></fa-icon>
+                        </div>
+                        <div class="col-lg-5 col-6 text-left">
+                            <span class="font-weight-bold"> OBÝVACÍ POKOJ</span>
+                        </div>
+                        <div class="col-lg-4 col-4">
+                            <span class="font-weight-bold">20.8 °C</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-2 text-right">
+                            <fa-icon [icon]="faTimesCircle" class="text-danger"></fa-icon>
+                        </div>
+                        <div class="col-lg-5 col-6 text-left">
+                            <span class="font-weight-bold"> KUCHYŇ</span>
+                        </div>
+                        <div class="col-lg-4 col-4">
+                            <span class="font-weight-bold">22.8 °C</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-2 text-right">
+                            <fa-icon [icon]="faCheckCircle" class="text-success"></fa-icon>
+                        </div>
+                        <div class="col-lg-5 col-6 text-left">
+                            <span class="font-weight-bold"> LOŽNICE</span>
+                        </div>
+                        <div class="col-lg-4 col-4">
+                            <span class="font-weight-bold">19.9 °C</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-2 text-right">
+                            <fa-icon [icon]="faTimesCircle" class="text-danger"></fa-icon>
+                        </div>
+                        <div class="col-lg-5 col-6 text-left">
+                            <span class="font-weight-bold"> JÍDELNA</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="font-weight-bold">22.4 °C</span>
+                        </div>
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col-12">
+                            <h6 class="m-0 font-weight-bold text-center">POŽADOVANÁ TEPLOTA: <span>{{sliderValue}}</span>
+                            </h6>
+                            <div class="custom-slider row justify-content-center">
+                                <ng5-slider [(value)]="sliderValue" [options]="sliderOptions"></ng5-slider>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-danger mx-auto" type="button">
+                            <fa-icon [icon]="faTimes"></fa-icon>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="chart-pie pt-4 col-12 mx-auto">
+                            <h6 class="m-0 font-weight-bold text-center">TOPENÍ PŘES ROK</h6>
+                            <canvas baseChart
+                                [data]="doughnutChartData"
+                                [labels]="doughnutChartLabels"
+                                [chartType]="doughnutChartType">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
