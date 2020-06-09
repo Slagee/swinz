@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faCheckCircle, faTimesCircle, faTimes, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { Label, MultiDataSet } from 'ng2-charts';
 import { ChartType } from 'chart.js';
-import { Options } from 'ng5-slider';
+import { Options } from '@m0t0r/ngx-slider';
 
 @Component({
   selector: 'app-home',
