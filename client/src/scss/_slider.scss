@@ -1,0 +1,11 @@
+.custom-slider {
+	padding: 1rem 2rem;
+}
+
+.custom-slider .ngx-slider .ngx-slider-bar {
+	background: -webkit-linear-gradient(left, $blue, $cyan, $green , $yellow, $red);
+}
+
+.custom-slider .ngx-slider .ngx-slider-pointer{
+	background-color: #313131;
+}

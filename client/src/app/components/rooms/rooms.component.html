@@ -1,0 +1,121 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Místnosti domu</h1>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <!-- Illustrations -->
+    <div class="col-xl-6 col-md-8 mb-4 pt-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card border border-secondary">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <ul class="nav nav-pills flex-column border-right border-secondary" id="myTab" role="tablist">
+                            <li class="nav-item border-bottom border-secondary">
+                                <a class="nav-link active rounded-0 text-center" id="obyvaci-tab" data-toggle="tab"
+                                    href="#obyvaci" role="tab" aria-controls="obyvaci" aria-selected="true">
+                                    <h1 class="h4 mb-0">Obyvaci pokoj</h1>
+                                </a>
+                            </li>
+                            <li class="nav-item border-bottom text-center border-secondary">
+                                <a class="nav-link rounded-0" id="kuchyn-tab" data-toggle="tab" href="#kuchyn"
+                                    role="tab" aria-controls="kuchyn" aria-selected="false">
+                                    <h1 class="h4 mb-0">Kuchyn</h1>
+                                </a>
+                            </li>
+                            <li class="nav-item border-bottom text-center border-secondary">
+                                <a class="nav-link rounded-0" id="jidelna-tab" data-toggle="tab" href="#jidelna"
+                                    role="tab" aria-controls="jidelna" aria-selected="false">
+                                    <h1 class="h4 mb-0">Jidelna</h1>
+                                </a>
+                            </li>
+                            <li class="nav-item text-center">
+                                <a class="nav-link rounded-0">
+                                    <fa-icon [icon]="faPlus" class="fa-2x text-primary" id="addNewRoom"></fa-icon>
+                                </a>
+                            </li>
+                            <li class="nav-item text-center align-items-end">
+                                <a class="nav-link rounded-0" style="margin-top: 16rem;" href="/home">
+                                    <fa-icon [icon]="faHome" class="fa-2x"></fa-icon>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content col-8" id="myTabContent">
+                        <div class="tab-pane fade show active" id="obyvaci" role="tabpanel"
+                            aria-labelledby="obyvaci-tab">
+                            <div class="text-right">
+                                <span class="fa-stack fa-lg" id="customCross">
+                                    <fa-icon [icon]="faSquare" class="fa-stack-2x text-danger"></fa-icon>
+                                    <fa-icon [icon]="faTimes" class="fa-stack-1x text-white"></fa-icon>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <span class="h2 text-gray-800 font-weight-bold">Obývací pokoj</span>
+                                </div>
+                            </div>
+                            <div class="font-weight-bold card-body">
+                                <div class="align-items-center d-flex row" id="roomsCardBody">
+                                    <div class="col-6 text-lg text-right">
+                                        Teplota
+                                    </div>
+                                    <div class="col-6 text-lg text-left">
+                                        20.8 °C
+                                    </div>
+                                </div>
+                                <div class="align-items-center d-flex row" id="roomsCardBody">
+                                    <div class="col-6 text-lg text-right">
+                                        Aktualni spotreba
+                                    </div>
+                                    <div class="col-6 text-lg text-left">
+                                        5 W
+                                    </div>
+                                </div>
+                                <div class="align-items-center d-flex row" id="roomsCardBody">
+                                    <div class="col-6 text-right">
+                                        Prumerna denni doba sviceni
+                                        <br><small>(posledni 2 tydny)</small>
+                                    </div>
+                                    <div class="col-6 text-lg text-left">
+                                        60 min
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <span class="h2 text-gray-800 font-weight-bold"><span id="amount-label"></span>
+                                        °C</span>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row justify-content-center">
+                                                <div class="col-6" id="slider"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><span class="text-lg">pozadovana teplota</span>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 5rem;">
+                                <div class="col-12 text-center h2 text-gray-800">
+                                    TOPENI JE <span class="text-danger">VYPNUTO</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="kuchyn" role="tabpanel" aria-labelledby="kuchyn-tab">
+                            <div class="row">
+                                <h5 class="text-center text-gray-800">Kuchyn</h5>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="jidelna" role="tabpanel" aria-labelledby="jidelna-tab">
+                            <div class="row">
+                                <h5 class="text-center text-gray-800">Jidelna</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

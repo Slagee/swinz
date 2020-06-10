@@ -1,0 +1,54 @@
+<div id="wrapper">
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light bg-gradient-primary topbar topbar mb-4 static-top shadow">
+
+        <a class="d-flex align-items-center justify-content-center" href="index.html">
+          <div class="rotate-n-15 ">
+            <fa-icon [icon]="faHome" class="text-gray-200 fa-2x"></fa-icon>
+          </div>
+          <div class="text-gray-200 mx-3">SWINZ</div>
+        </a>
+
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+
+          <!-- Nav Item - User Information -->
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <span class="mr-2 d-none d-lg-inline text-gray-200 small">Lukáš Lazar</span>
+              <fa-icon [icon]="faUserCircle" class="fa-2x"></fa-icon>
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="#">
+                <fa-icon [icon]="faList" class="fa-sm fa-fw mr-2 text-gray-400"></fa-icon>
+                Activity Log
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <fa-icon [icon]="faSignOutAlt" class="fa-sm fa-fw mr-2 text-gray-400"></fa-icon>
+                Logout
+              </a>
+            </div>
+          </li>
+
+        </ul>
+
+      </nav>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
