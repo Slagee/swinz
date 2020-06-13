@@ -12,8 +12,20 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <ul class="nav nav-pills flex-column border-right border-secondary" id="myTab" role="tablist">
+                            <li *ngFor="let room of roomsData; first as isFirst" class="nav-item border-bottom border-secondary" (click)="onSelect(room)">
+                                <a *ngIf="isFirst; else notFirst" class="nav-link active rounded-0 text-center" id="{{room.name}}-tab" data-toggle="tab"
+                                    href="#{{room.name}}" role="tab" attr.aria-controls="{{room.name}}" aria-selected="true">
+                                    <h1 class="h4 mb-0">{{room.name}}</h1>
+                                </a>
+                                <ng-template #notFirst>
+                                    <a class="nav-link rounded-0 text-center" id="{{room.name}}-tab" data-toggle="tab"
+                                    href="#{{room.name}}" role="tab" attr.aria-controls="{{room.name}}" aria-selected="true">
+                                    <h1 class="h4 mb-0">{{room.name}}</h1>
+                                </a>
+                                </ng-template>
+                            </li>
                             <li class="nav-item border-bottom border-secondary">
-                                <a class="nav-link active rounded-0 text-center" id="obyvaci-tab" data-toggle="tab"
+                                <a class="nav-link rounded-0 text-center" id="obyvaci-tab" data-toggle="tab"
                                     href="#obyvaci" role="tab" aria-controls="obyvaci" aria-selected="true">
                                     <h1 class="h4 mb-0">Obyvaci pokoj</h1>
                                 </a>
@@ -111,6 +123,70 @@
                         <div class="tab-pane fade" id="jidelna" role="tabpanel" aria-labelledby="jidelna-tab">
                             <div class="row">
                                 <h5 class="text-center text-gray-800">Jidelna</h5>
+                            </div>
+                        </div>
+                        <div *ngFor="let room of roomsData" class="tab-pane fade" id="{{room.name}}" role="tabpanel" attr.aria-labelledby="{{room.name}} -tab">
+                            <div class="text-right">
+                                <span class="fa-stack fa-lg" id="customCross">
+                                    <fa-icon [icon]="faSquare" class="fa-stack-2x text-danger"></fa-icon>
+                                    <fa-icon [icon]="faTimes" class="fa-stack-1x text-white"></fa-icon>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <span class="h2 text-gray-800 font-weight-bold">{{room.name}}</span>
+                                </div>
+                            </div>
+                            <div class="font-weight-bold card-body">
+                                <div class="align-items-center d-flex row" id="roomsCardBody">
+                                    <div class="col-6 text-lg text-right">
+                                        Teplota
+                                    </div>
+                                    <div class="col-6 text-lg text-left">
+                                        {{room.currentTemperature}} °C
+                                    </div>
+                                </div>
+                                <div class="align-items-center d-flex row" id="roomsCardBody">
+                                    <div class="col-6 text-lg text-right">
+                                        Aktualni spotreba
+                                    </div>
+                                    <div class="col-6 text-lg text-left">
+                                        5 W
+                                    </div>
+                                </div>
+                                <div class="align-items-center d-flex row" id="roomsCardBody">
+                                    <div class="col-6 text-right">
+                                        Prumerna denni doba sviceni
+                                        <br><small>(posledni 2 tydny)</small>
+                                    </div>
+                                    <div class="col-6 text-lg text-left">
+                                        60 min
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <span class="h2 text-gray-800 font-weight-bold"><span id="amount-label"></span>
+                                        °C</span>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row justify-content-center">
+                                                <div class="col-6" id="slider"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><span class="text-lg">pozadovana teplota</span>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 5rem;">
+                                <div *ngIf="room.radiatorState; else off" class="col-12 text-center h2 text-gray-800">
+                                    TOPENI JE <span class="text-success">ZAPNUTO</span>
+                                </div>
+                                <ng-template #off>
+                                    <div class="col-12 text-center h2 text-gray-800">
+                                        TOPENI JE <span class="text-danger">VYPNUTO</span>
+                                    </div>
+                                </ng-template>
                             </div>
                         </div>
                     </div>

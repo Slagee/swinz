@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlus, faHome, faSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Room } from 'src/app/models/room.model';
+import { RestApiService } from 'src/app/services/rest-api.service';
 
 @Component({
   selector: 'app-rooms',
@@ -13,9 +15,25 @@ export class RoomsComponent implements OnInit {
   faSquare = faSquare;
   faTimes = faTimes;
 
-  constructor() { }
+  roomsData: Array<Room> = [];
+  selectedRoom: Room;
+
+  constructor(
+    private readonly restApiService: RestApiService
+  ) { }
 
   ngOnInit(): void {
+    this.restApiService.getAllRoomData()
+    .subscribe(
+      (roomsData: Array<Room>) => this.roomsData = roomsData,
+      (error) => console.log(error),
+      () => {}
+    );
+  }
+
+  onSelect(room: Room): void {
+    this.selectedRoom = room;
+    console.log(room);
   }
 
 }

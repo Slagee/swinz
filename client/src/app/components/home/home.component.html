@@ -65,12 +65,12 @@
                     </div>
                     <div *ngFor="let room of roomsData">
                         <div class="row">
-                            <div *ngIf="room.currentTemperature >= room.selectedTemperature; else running" class="col-lg-3 col-2 text-right">
-                                <fa-icon [icon]="faTimesCircle" class="text-danger"></fa-icon>
+                            <div *ngIf="room.radiatorState; else off" class="col-lg-3 col-2 text-right">
+                                <fa-icon [icon]="faCheckCircle" class="text-success"></fa-icon>
                             </div>
-                            <ng-template #running>
+                            <ng-template #off>
                                 <div class="col-lg-3 col-2 text-right">
-                                    <fa-icon [icon]="faCheckCircle" class="text-success"></fa-icon>
+                                    <fa-icon [icon]="faTimesCircle" class="text-danger"></fa-icon>
                                 </div>
                             </ng-template>
                             <div class="col-lg-5 col-6 text-left">
