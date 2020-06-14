@@ -11,35 +11,10 @@
             <div class="card border border-secondary">
                 <div class="row">
                     <div class="col-lg-4">
-                        <ul class="nav nav-pills flex-column border-right border-secondary" id="myTab" role="tablist">
+                        <ul class="nav nav-pills flex-column border-right border-secondary" id="myTab" role="tablist" aria-orientation="vertical">
                             <li *ngFor="let room of roomsData; first as isFirst" class="nav-item border-bottom border-secondary" (click)="onSelect(room)">
-                                <a *ngIf="isFirst; else notFirst" class="nav-link active rounded-0 text-center" id="{{room.name}}-tab" data-toggle="tab"
-                                    href="#{{room.name}}" role="tab" attr.aria-controls="{{room.name}}" aria-selected="true">
+                                <a class="nav-link rounded-0 text-center" [class.active]="room === selectedRoom" id="{{room.name}}-tab" data-toggle="tab" href="#{{room.name}}" role="tab" attr.aria-controls="{{room.name}}" aria-selected="true">
                                     <h1 class="h4 mb-0">{{room.name}}</h1>
-                                </a>
-                                <ng-template #notFirst>
-                                    <a class="nav-link rounded-0 text-center" id="{{room.name}}-tab" data-toggle="tab"
-                                    href="#{{room.name}}" role="tab" attr.aria-controls="{{room.name}}" aria-selected="true">
-                                    <h1 class="h4 mb-0">{{room.name}}</h1>
-                                </a>
-                                </ng-template>
-                            </li>
-                            <li class="nav-item border-bottom border-secondary">
-                                <a class="nav-link rounded-0 text-center" id="obyvaci-tab" data-toggle="tab"
-                                    href="#obyvaci" role="tab" aria-controls="obyvaci" aria-selected="true">
-                                    <h1 class="h4 mb-0">Obyvaci pokoj</h1>
-                                </a>
-                            </li>
-                            <li class="nav-item border-bottom text-center border-secondary">
-                                <a class="nav-link rounded-0" id="kuchyn-tab" data-toggle="tab" href="#kuchyn"
-                                    role="tab" aria-controls="kuchyn" aria-selected="false">
-                                    <h1 class="h4 mb-0">Kuchyn</h1>
-                                </a>
-                            </li>
-                            <li class="nav-item border-bottom text-center border-secondary">
-                                <a class="nav-link rounded-0" id="jidelna-tab" data-toggle="tab" href="#jidelna"
-                                    role="tab" aria-controls="jidelna" aria-selected="false">
-                                    <h1 class="h4 mb-0">Jidelna</h1>
                                 </a>
                             </li>
                             <li class="nav-item text-center">
@@ -55,8 +30,7 @@
                         </ul>
                     </div>
                     <div class="tab-content col-8" id="myTabContent">
-                        <div class="tab-pane fade show active" id="obyvaci" role="tabpanel"
-                            aria-labelledby="obyvaci-tab">
+                        <div *ngIf="selectedRoom" class="tab-pane fade show active" id="{{selectedRoom.name}}" role="tabpanel" attr.aria-labelledby="{{selectedRoom.name}}-tab" >
                             <div class="text-right">
                                 <span class="fa-stack fa-lg" id="customCross">
                                     <fa-icon [icon]="faSquare" class="fa-stack-2x text-danger"></fa-icon>
@@ -65,7 +39,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 text-center">
-                                    <span class="h2 text-gray-800 font-weight-bold">Obývací pokoj</span>
+                                    <span class="h2 text-gray-800 font-weight-bold">{{selectedRoom.name}}</span>
                                 </div>
                             </div>
                             <div class="font-weight-bold card-body">
@@ -74,21 +48,21 @@
                                         Teplota
                                     </div>
                                     <div class="col-6 text-lg text-left">
-                                        20.8 °C
+                                        {{selectedRoom.currentTemperature}} °C
                                     </div>
                                 </div>
                                 <div class="align-items-center d-flex row" id="roomsCardBody">
                                     <div class="col-6 text-lg text-right">
-                                        Aktualni spotreba
+                                        Aktuální spotřeba
                                     </div>
                                     <div class="col-6 text-lg text-left">
-                                        5 W
+                                        {{ selectedRoom.powerConsumption }} W
                                     </div>
                                 </div>
                                 <div class="align-items-center d-flex row" id="roomsCardBody">
                                     <div class="col-6 text-right">
-                                        Prumerna denni doba sviceni
-                                        <br><small>(posledni 2 tydny)</small>
+                                        Průměrná denní doba svícení
+                                        <br><small>(poslední 2 týdny)</small>
                                     </div>
                                     <div class="col-6 text-lg text-left">
                                         60 min
@@ -98,93 +72,20 @@
                             <div class="row">
                                 <div class="col-12 text-center">
                                     <span class="h2 text-gray-800 font-weight-bold"><span id="amount-label"></span>
-                                        °C</span>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row justify-content-center">
-                                                <div class="col-6" id="slider"></div>
-                                            </div>
-                                        </div>
+                                        {{sliderValue}} °C</span>                            
+                                    <div class="custom-slider row justify-content-center">
+                                        <ngx-slider [(value)]="sliderValue" [options]="sliderOptions"></ngx-slider>
                                     </div>
-                                    <br><span class="text-lg">pozadovana teplota</span>
+                                    <br><span class="text-lg">požadovaná teplota</span>
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 5rem;">
-                                <div class="col-12 text-center h2 text-gray-800">
-                                    TOPENI JE <span class="text-danger">VYPNUTO</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="kuchyn" role="tabpanel" aria-labelledby="kuchyn-tab">
-                            <div class="row">
-                                <h5 class="text-center text-gray-800">Kuchyn</h5>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="jidelna" role="tabpanel" aria-labelledby="jidelna-tab">
-                            <div class="row">
-                                <h5 class="text-center text-gray-800">Jidelna</h5>
-                            </div>
-                        </div>
-                        <div *ngFor="let room of roomsData" class="tab-pane fade" id="{{room.name}}" role="tabpanel" attr.aria-labelledby="{{room.name}} -tab">
-                            <div class="text-right">
-                                <span class="fa-stack fa-lg" id="customCross">
-                                    <fa-icon [icon]="faSquare" class="fa-stack-2x text-danger"></fa-icon>
-                                    <fa-icon [icon]="faTimes" class="fa-stack-1x text-white"></fa-icon>
-                                </span>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <span class="h2 text-gray-800 font-weight-bold">{{room.name}}</span>
-                                </div>
-                            </div>
-                            <div class="font-weight-bold card-body">
-                                <div class="align-items-center d-flex row" id="roomsCardBody">
-                                    <div class="col-6 text-lg text-right">
-                                        Teplota
-                                    </div>
-                                    <div class="col-6 text-lg text-left">
-                                        {{room.currentTemperature}} °C
-                                    </div>
-                                </div>
-                                <div class="align-items-center d-flex row" id="roomsCardBody">
-                                    <div class="col-6 text-lg text-right">
-                                        Aktualni spotreba
-                                    </div>
-                                    <div class="col-6 text-lg text-left">
-                                        5 W
-                                    </div>
-                                </div>
-                                <div class="align-items-center d-flex row" id="roomsCardBody">
-                                    <div class="col-6 text-right">
-                                        Prumerna denni doba sviceni
-                                        <br><small>(posledni 2 tydny)</small>
-                                    </div>
-                                    <div class="col-6 text-lg text-left">
-                                        60 min
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <span class="h2 text-gray-800 font-weight-bold"><span id="amount-label"></span>
-                                        °C</span>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row justify-content-center">
-                                                <div class="col-6" id="slider"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br><span class="text-lg">pozadovana teplota</span>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-top: 5rem;">
-                                <div *ngIf="room.radiatorState; else off" class="col-12 text-center h2 text-gray-800">
-                                    TOPENI JE <span class="text-success">ZAPNUTO</span>
+                                <div *ngIf="selectedRoom.radiatorState; else off" class="col-12 text-center h2 text-gray-800">
+                                    TOPENÍ JE <span class="text-success">ZAPNUTO</span>
                                 </div>
                                 <ng-template #off>
                                     <div class="col-12 text-center h2 text-gray-800">
-                                        TOPENI JE <span class="text-danger">VYPNUTO</span>
+                                        TOPENÍ JE <span class="text-danger">VYPNUTO</span>
                                     </div>
                                 </ng-template>
                             </div>

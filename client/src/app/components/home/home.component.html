@@ -81,13 +81,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row pt-5">
-                        <div class="col-12">
-                            <h6 class="m-0 font-weight-bold text-center">POŽADOVANÁ TEPLOTA: <span>{{sliderValue}}</span>
-                            </h6>
+                    <div class="row pt-4">
+                        <div class="col-12 text-center">
+                            <span class="h2 text-gray-800 font-weight-bold"><span id="amount-label"></span>
+                                {{sliderValue}} °C</span>                            
                             <div class="custom-slider row justify-content-center">
                                 <ngx-slider [(value)]="sliderValue" [options]="sliderOptions"></ngx-slider>
                             </div>
+                            <br><span class="text-lg">požadovaná teplota</span>
                         </div>
                     </div>
                     <div class="row">
