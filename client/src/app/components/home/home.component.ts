@@ -15,9 +15,11 @@ export class HomeComponent implements OnInit {
 
   roomsData: Array<Room> = [];
 
+  globalRadiatorState: boolean = false;
+
   doughnutChartLabels: Label[] = ['Zapnuto', 'Vypnuto', 'Zbývá'];
   doughnutChartData: MultiDataSet = [
-    [60, 10, 20]
+    [60, 10, 30]
   ];
   doughnutChartType: ChartType = 'doughnut';
 
@@ -46,4 +48,11 @@ export class HomeComponent implements OnInit {
       );
   }
 
+  changeGlobalRadiatorSettings(): void {
+    this.roomsData.forEach(room => {
+      room.radiatorState = this.globalRadiatorState;
+      this.restApiService.updateRoom(room);
+    });
+    this.globalRadiatorState == true ? this.globalRadiatorState = false : this.globalRadiatorState = true;
+  }
 }
