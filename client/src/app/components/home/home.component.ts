@@ -5,6 +5,7 @@ import { ChartType } from 'chart.js';
 import { Options } from '@m0t0r/ngx-slider';
 import { Room } from 'src/app/models/room.model';
 import { RestApiService } from 'src/app/services/rest-api.service';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
   faTimes = faTimes;
   faCircle = faCircle;
 
-  sliderValue: number = 23.0;
+  sliderValue: number = 21.0;
   sliderOptions: Options = {
     floor: 15,
     ceil: 30,
@@ -40,19 +41,28 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getRooms();
+  }
+
+  getRooms(): void {
     this.restApiService.getAllRoomData()
-      .subscribe(
-        (roomsData: Array<Room>) => this.roomsData = roomsData,
-        (error) => console.log(error),
-        () => {}
-      );
+    .subscribe(
+      (roomsData: Array<Room>) => this.roomsData = roomsData,
+      (error) => console.log(error),
+      () => {}
+    );
   }
 
   changeGlobalRadiatorSettings(): void {
+    this.getRooms();
     this.roomsData.forEach(room => {
       room.radiatorState = this.globalRadiatorState;
-      this.restApiService.updateRoom(room);
-    });
+      this.restApiService.updateRoomById(room, room.id)
+        .subscribe(
+          success => console.log(room.radiatorState),
+          error => alert(error)
+        );
+      });
     this.globalRadiatorState == true ? this.globalRadiatorState = false : this.globalRadiatorState = true;
   }
 }

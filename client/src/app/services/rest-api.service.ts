@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { Room } from '../models/room.model';
 import { ApiManager } from '../api-manager';
 
@@ -26,15 +26,13 @@ export class RestApiService {
     return this.http.get<Room>(ApiManager.BACKEND_API + '/rooms/' + id);
   }
 
-  updateRoomById(room: Room, id): Observable<any>
+  updateRoomById(room: Room, id: number): Observable<any>
   {
-    console.log(room);
     return this.http.put(ApiManager.BACKEND_API + '/rooms/' + id, room, this.httpOptions);
   }
 
   updateRoom(room: Room): Observable<any>
   {
-    console.log(room);
     return this.http.put(ApiManager.BACKEND_API + '/rooms', room);
   }
 }

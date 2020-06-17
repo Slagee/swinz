@@ -1,7 +1,7 @@
 import { NullTemplateVisitor } from '@angular/compiler';
 
 export class Room {
-    ID: number | null = null;
+    id: number | null = null;
     name: string | null = null;
     currentTemperature: number | null = null;
     selectedTemperature: number | null = null;

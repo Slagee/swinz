@@ -3,6 +3,7 @@ import { faPlus, faHome, faSquare, faTimes } from '@fortawesome/free-solid-svg-i
 import { Room } from 'src/app/models/room.model';
 import { Options } from '@m0t0r/ngx-slider';
 import { RestApiService } from 'src/app/services/rest-api.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-rooms',
@@ -28,21 +29,33 @@ export class RoomsComponent implements OnInit {
 
   constructor(
     private readonly restApiService: RestApiService
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit(): void {
-    this.restApiService.getAllRoomData()
-    .subscribe(
+    this.restApiService.getAllRoomData().subscribe(
       (roomsData: Array<Room>) => {
         this.roomsData = roomsData;
-        this.selectedRoom = roomsData[0]},
-      (error) => console.log(error),
+        this.selectedRoom = roomsData[0];
+      },
+      (error) => alert(error),
       () => {}
+    );
+
+    interval(10000).subscribe((_x => {this.updateRooms()}));
+  }
+
+  updateRooms(): void {
+    this.restApiService.getAllRoomData()
+    .subscribe(
+      (roomsData: Array<Room>) => this.roomsData = roomsData,
+      (error) => console.log(error),
+      () => {this.onSelect(this.roomsData[this.selectedRoom.id - 1])}
     );
   }
 
   onSelect(room: Room): void {
     this.selectedRoom = room;
-    console.log(room.name);
   }
 }
