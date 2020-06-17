@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faPlus, faHome, faSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Room } from 'src/app/models/room.model';
 import { Options } from '@m0t0r/ngx-slider';
@@ -10,7 +10,7 @@ import { interval } from 'rxjs';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss']
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit, OnDestroy {
 
   faPlus = faPlus;
   faHome = faHome;
@@ -27,10 +27,14 @@ export class RoomsComponent implements OnInit {
   roomsData: Array<Room> = [];
   selectedRoom: Room;
 
+   private timer: any
+
   constructor(
     private readonly restApiService: RestApiService
-  ) { 
-    
+  ) { }
+
+  ngOnDestroy(): void {
+    this.timer.unsubscribe()
   }
 
   ngOnInit(): void {
@@ -43,7 +47,7 @@ export class RoomsComponent implements OnInit {
       () => {}
     );
 
-    interval(10000).subscribe((_x => {this.updateRooms()}));
+    this.timer = interval(10000).subscribe(_x => this.updateRooms());
   }
 
   updateRooms(): void {
