@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faCheckCircle, faTimesCircle, faTimes, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { Label, MultiDataSet } from 'ng2-charts';
 import { ChartType } from 'chart.js';
 import { Options } from '@m0t0r/ngx-slider';
 import { Room } from 'src/app/models/room.model';
 import { RestApiService } from 'src/app/services/rest-api.service';
-import { error } from 'protractor';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   roomsData: Array<Room> = [];
 
@@ -36,12 +36,20 @@ export class HomeComponent implements OnInit {
     step: 0.1
   }
 
+  private timer: any
+
   constructor(
     private readonly restApiService: RestApiService
   ) { }
 
+  ngOnDestroy(): void {
+    this.timer.unsubscribe();
+  }
+
   ngOnInit(): void {
     this.getRooms();
+
+    this.timer = interval(10000).subscribe(_x => this.getRooms());
   }
 
   getRooms(): void {

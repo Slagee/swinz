@@ -18,7 +18,7 @@
                                 </a>
                             </li>
                             <li class="nav-item text-center">
-                                <a class="nav-link rounded-0">
+                                <a class="nav-link rounded-0" (click)="newRoom()" routerLink="/rooms">
                                     <fa-icon [icon]="faPlus" class="fa-2x text-primary" id="addNewRoom"></fa-icon>
                                 </a>
                             </li>
@@ -74,7 +74,7 @@
                                     <span class="h2 text-gray-800 font-weight-bold"><span id="amount-label"></span>
                                         {{sliderValue}} °C</span>                            
                                     <div class="custom-slider row justify-content-center">
-                                        <ngx-slider [(value)]="sliderValue" [options]="sliderOptions"></ngx-slider>
+                                        <ngx-slider [(value)]="sliderValue" [options]="sliderOptions" (mouseup)="sliderChange()"></ngx-slider>
                                     </div>
                                     <br><span class="text-lg">požadovaná teplota</span>
                                 </div>
