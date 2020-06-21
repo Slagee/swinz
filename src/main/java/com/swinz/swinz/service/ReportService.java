@@ -25,7 +25,7 @@ public class ReportService {
         return reports;
     }
 
-    public Report getReportByID(int id) {
+    public Report getReportByID(Long id) {
         return reportRepository.findById(id).orElseThrow();
     }
 
@@ -33,7 +33,7 @@ public class ReportService {
         reportRepository.save(report);
     }
 
-    public void updateReport(Report report, int id) {
+    public void updateReport(Report report, Long id) {
         report.setID(id);
         reportRepository.save(report);
     }
@@ -42,15 +42,19 @@ public class ReportService {
         reportRepository.delete(report);
     }
 
-    public void deleteReportByID(int id) {
+    public void deleteReportByID(Long id) {
         reportRepository.deleteById(id);
     }
 
-    public List<Report> findReportsByRoomID(int id) {
+    public List<Report> getReportsByRoomID(Long id) {
         return reportRepository.findByRoomID(id);
     }
 
-    public List<Report> findReportsByLocalDate(LocalDate localDate) {
+    public List<Report> getReportsByLocalDate(LocalDate localDate) {
         return reportRepository.findReportsByReportDate(localDate);
+    }
+
+    public List<Report> getReportsByLocalDateAndRoomID(LocalDate localDate, Long roomID) {
+        return reportRepository.findReportsByReportDateAndRoom_ID(localDate, roomID);
     }
 }

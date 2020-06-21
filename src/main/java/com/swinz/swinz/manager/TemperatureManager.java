@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+import static com.swinz.swinz.constants.Constants.TEMPERATURE_RAISE;
+
 @Component
 public class TemperatureManager {
 
@@ -30,6 +32,6 @@ public class TemperatureManager {
     }
 
     private double raiseRoomTemperature(double currentTemperature) {
-        return BigDecimal.valueOf(currentTemperature).add(BigDecimal.valueOf(0.2)).doubleValue();
+        return BigDecimal.valueOf(currentTemperature).add(BigDecimal.valueOf(TEMPERATURE_RAISE)).doubleValue();
     }
 }

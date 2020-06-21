@@ -24,7 +24,7 @@ public class RoomService {
         return rooms;
     }
 
-    public Room getRoomByID(int id) {
+    public Room getRoomByID(Long id) {
         return roomRepository.findById(id).orElseThrow();
     }
 
@@ -32,16 +32,13 @@ public class RoomService {
         roomRepository.save(room);
     }
 
-    public void updateRoom(Room room, int id) {
+    public void updateRoom(Room room, Long id) {
         room.setID(id);
         roomRepository.save(room);
     }
 
-    public void deleteRoomByID(int id) {
+    public void deleteRoomByID(Long id) {
         roomRepository.deleteById(id);
     }
 
-    public List<Room> getAllRoomsByHouseID(int id) {
-        return roomRepository.findRoomsByHouse_ID(id);
-    }
 }
