@@ -10,7 +10,7 @@
             <div class="card border border-secondary">
                 <div class="card-header py-3">
                     <div class="row">
-                        <a class="col-md-6" href="/rooms">
+                        <a class="col-md-6" routerLink="/rooms">
                             <h4 class="m-0 font-weight-bold text-center">Místnosti</h4>
                         </a>
                         <a class="col-md-6" href="">
@@ -19,63 +19,43 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-3 col-2 text-right">
-                            <fa-icon [icon]="faCheckCircle" class="text-success"></fa-icon>
-                        </div>
-                        <div class="col-lg-5 col-6 text-left">
-                            <span class="font-weight-bold"> OBÝVACÍ POKOJ</span>
-                        </div>
-                        <div class="col-lg-4 col-4">
-                            <span class="font-weight-bold">20.8 °C</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-2 text-right">
-                            <fa-icon [icon]="faTimesCircle" class="text-danger"></fa-icon>
-                        </div>
-                        <div class="col-lg-5 col-6 text-left">
-                            <span class="font-weight-bold"> KUCHYŇ</span>
-                        </div>
-                        <div class="col-lg-4 col-4">
-                            <span class="font-weight-bold">22.8 °C</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-2 text-right">
-                            <fa-icon [icon]="faCheckCircle" class="text-success"></fa-icon>
-                        </div>
-                        <div class="col-lg-5 col-6 text-left">
-                            <span class="font-weight-bold"> LOŽNICE</span>
-                        </div>
-                        <div class="col-lg-4 col-4">
-                            <span class="font-weight-bold">19.9 °C</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-2 text-right">
-                            <fa-icon [icon]="faTimesCircle" class="text-danger"></fa-icon>
-                        </div>
-                        <div class="col-lg-5 col-6 text-left">
-                            <span class="font-weight-bold"> JÍDELNA</span>
-                        </div>
-                        <div class="col-4">
-                            <span class="font-weight-bold">22.4 °C</span>
-                        </div>
-                    </div>
-                    <div class="row pt-5">
-                        <div class="col-12">
-                            <h6 class="m-0 font-weight-bold text-center">POŽADOVANÁ TEPLOTA: <span>{{sliderValue}}</span>
-                            </h6>
-                            <div class="custom-slider row justify-content-center">
-                                <ngx-slider [(value)]="sliderValue" [options]="sliderOptions"></ngx-slider>
+                    <div *ngFor="let room of roomsData">
+                        <div class="row">
+                            <div *ngIf="room.radiatorState; else off" class="col-lg-3 col-2 text-right">
+                                <fa-icon [icon]="faCheckCircle" class="text-success"></fa-icon>
+                            </div>
+                            <ng-template #off>
+                                <div class="col-lg-3 col-2 text-right">
+                                    <fa-icon [icon]="faTimesCircle" class="text-danger"></fa-icon>
+                                </div>
+                            </ng-template>
+                            <div class="col-lg-5 col-6 text-left">
+                                <span class="font-weight-bold"> {{ room.name }}</span>
+                            </div>
+                            <div class="col-4">
+                                <span class="font-weight-bold">{{ room.currentTemperature}} °C</span>
                             </div>
                         </div>
                     </div>
+                    <div class="row pt-4">
+                        <div class="col-12 text-center">
+                            <span class="h2 text-gray-800 font-weight-bold"><span id="amount-label"></span>
+                                {{sliderValue}} °C</span>                            
+                            <div class="custom-slider row justify-content-center">
+                                <ngx-slider [(value)]="sliderValue" [options]="sliderOptions"></ngx-slider>
+                            </div>
+                            <br><span class="text-lg">požadovaná teplota</span>
+                        </div>
+                    </div>
                     <div class="row">
-                        <button class="btn btn-danger mx-auto" type="button">
-                            <fa-icon [icon]="faTimes"></fa-icon>
+                        <button *ngIf="globalRadiatorState; else off" class="btn btn-success mx-auto" type="button" (click)="changeGlobalRadiatorSettings()">
+                            <fa-icon [icon]="faCheckCircle"></fa-icon>
                         </button>
+                        <ng-template #off>
+                            <button class="btn btn-danger mx-auto" type="button" (click)="changeGlobalRadiatorSettings()">
+                                <fa-icon [icon]="faTimes"></fa-icon>
+                            </button>
+                        </ng-template>
                     </div>
                     <div class="row">
                         <div class="chart-pie pt-4 col-12 mx-auto">
