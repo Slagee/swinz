@@ -6,6 +6,7 @@ import { Options } from '@m0t0r/ngx-slider';
 import { Room } from 'src/app/models/room.model';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { interval } from 'rxjs';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -47,7 +48,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getRooms();
+    this.restApiService.getAllRoomData()
+    .subscribe(
+      (roomsData: Array<Room>) => 
+        {
+          this.roomsData = roomsData;
+          this.sliderValue = this.roomsData[0].selectedTemperature;
+        },
+      () => {}
+    );
 
     this.timer = interval(10000).subscribe(_x => this.getRooms());
   }
@@ -56,7 +65,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.restApiService.getAllRoomData()
     .subscribe(
       (roomsData: Array<Room>) => this.roomsData = roomsData,
-      (error) => console.log(error),
       () => {}
     );
   }
@@ -67,10 +75,21 @@ export class HomeComponent implements OnInit, OnDestroy {
       room.radiatorState = this.globalRadiatorState;
       this.restApiService.updateRoomById(room, room.id)
         .subscribe(
-          success => console.log(room.radiatorState),
-          error => alert(error)
+          (_success) => console.log(room.radiatorState),
+          (error) => console.log(error),
+          () => {}
         );
       });
     this.globalRadiatorState == true ? this.globalRadiatorState = false : this.globalRadiatorState = true;
+  }
+
+  sliderChange(): void {
+    this.roomsData.forEach(room => {
+      room.selectedTemperature = this.sliderValue;
+      this.restApiService.updateRoomById(room, room.id).subscribe(
+        (_success) => console.log(room.selectedTemperature),
+        () => { this.getRooms() }
+      )
+    });
   }
 }
