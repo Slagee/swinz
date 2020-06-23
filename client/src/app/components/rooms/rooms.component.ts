@@ -19,6 +19,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
 
   roomsData: Array<Room> = [];
   selectedRoom: Room;
+  userRoom = new Room();
 
   sliderValue: number = 21;
   sliderOptions: Options = {
@@ -50,6 +51,10 @@ export class RoomsComponent implements OnInit, OnDestroy {
     this.timer = interval(1000).subscribe(_x => this.updateRooms());
   }
 
+  onSubmit(): void {
+    console.log("submit");
+  }
+
   updateRooms(): void {
     this.restApiService.getAllRoomData().subscribe(
       (rooms: Array<Room>) => this.roomsData = rooms,
@@ -78,5 +83,9 @@ export class RoomsComponent implements OnInit, OnDestroy {
 
   onSelect(room: Room): void {
     this.selectedRoom = room;
+  }
+
+  getCurrentRoom() {
+    return JSON.stringify(this.userRoom);
   }
 }
