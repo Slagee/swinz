@@ -18,12 +18,33 @@
                                 </a>
                             </li>
                             <li class="nav-item text-center">
-                                <a class="nav-link rounded-0" (click)="newRoom()" routerLink="/rooms">
+                                <a class="nav-link rounded-0" data-toggle="modal" data-target="#myModal" routerLink="/rooms">
                                     <fa-icon [icon]="faPlus" class="fa-2x text-primary" id="addNewRoom"></fa-icon>
                                 </a>
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel">
+                                                    Vytvořit novou místnost
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                    ...
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                                                <button type="button" class="btn btn-primary">Uložit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                             <li class="nav-item text-center align-items-end">
-                                <a class="nav-link rounded-0" style="margin-top: 16rem;" routerLink="/home">
+                                <a class="nav-link rounded-0 home-button" style="margin-top: 16rem;" routerLink="/home">
                                     <fa-icon [icon]="faHome" class="fa-2x"></fa-icon>
                                 </a>
                             </li>

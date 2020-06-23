@@ -6,7 +6,6 @@ import { Options } from '@m0t0r/ngx-slider';
 import { Room } from 'src/app/models/room.model';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { interval } from 'rxjs';
-import { error } from 'protractor';
 
 @Component({
   selector: 'app-home',

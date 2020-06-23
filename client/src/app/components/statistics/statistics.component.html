@@ -1,0 +1,199 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Statistiky</h1>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <!-- Illustrations -->
+    <div class="col-xl-6 col-md-8 mb-4 pt-4 mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card border border-secondary">
+                <div class="card-header py-3">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h1 class="h2 text-gray-900 font-weight-bold">SOUHRNNÉ STATISTIKY</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body scroll">
+                    <div class="list-group">
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-2 text-gray-900 font-weight-bold col-4">LEDEN</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold col-4">ÚNOR</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold col-4">BŘEZEN</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold col-4">DUBEN</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold col-4">KVĚTEN</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold col-4">ČERVEN</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold col-4">ČERVENEC</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold col-4">SRPEN</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold  col-4">ZÁŘÍ</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold  col-4">ŘÍJEN</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold col-4">LISTOPAD</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100">
+                                <h4 class="mb-1 text-gray-900 font-weight-bold col-4">PROSINEC</h4>
+                                <small class="small-text col-2">dnů zapnuto vytápění</small>
+                                <small class="small-text col-2">průměrná denní doba svícení</small>
+                                <small class="small-text col-2">spotřeba energie</small>
+                            </div>
+                            <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
+                                <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">0</h5>
+                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <a class="home-button" routerLink="/home">
+                        <fa-icon [icon]="faHome" class="fa-2x"></fa-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
