@@ -18,12 +18,44 @@
                                 </a>
                             </li>
                             <li class="nav-item text-center">
-                                <a class="nav-link rounded-0" (click)="newRoom()" routerLink="/rooms">
+                                <a class="nav-link rounded-0" data-toggle="modal" data-target="#myModal" routerLink="/rooms">
                                     <fa-icon [icon]="faPlus" class="fa-2x text-primary" id="addNewRoom"></fa-icon>
                                 </a>
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel">
+                                                    Vytvořit novou místnost
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form (ngSubmit)="onSubmit(); roomModelForm.reset()" #roomModelForm="ngForm" novalidate>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="roomsName">Název místnosti</label>
+                                                        <input type="text" name="name" [(ngModel)]="userRoom.name"  class="form-control" id="roomsName" placeholder="Vytvořte název místnosti" required #trackName="ngModel">
+                                                        <small class="alert" *ngIf="!trackName.valid && trackName.touched">Název místnosti je potřeba vyplnit</small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="roomsSelectedTemperature">Nastavte teplotu</label>
+                                                        <input type="number" name="selectedTemperature" [(ngModel)]="userRoom.selectedTemperature" class="form-control" id="roomsSelectedTemperature" value="21.5" step="0.1" min="15" max="30" placeholder="Možné hodnoty: 15-30" required #trackNumber="ngModel">
+                                                        <small class="alert" *ngIf="!trackNumber.valid && trackNumber.touched">Požadovanou teplotu je potřeba poskytnout</small>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                                                    <button type="submit" [disabled]="!roomModelForm.form.valid" class="btn btn-primary">Uložit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                             <li class="nav-item text-center align-items-end">
-                                <a class="nav-link rounded-0" style="margin-top: 16rem;" routerLink="/home">
+                                <a class="nav-link rounded-0 home-button" style="margin-top: 16rem;" routerLink="/home">
                                     <fa-icon [icon]="faHome" class="fa-2x"></fa-icon>
                                 </a>
                             </li>

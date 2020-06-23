@@ -1,0 +1,34 @@
+.scroll {
+    max-height: 40rem;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    border: none;
+}
+
+.d-flex {
+    padding-bottom: 5px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 1px rgb(218, 218, 218);
+}
+
+.home-button {
+    color: gray;
+}
+
+.small-text {
+    text-align: center;
+}
+
+.room-data {
+    border-bottom: solid 1px rgb(218, 218, 218);
+    margin-top: 2px;
+}
+
+.data-text {
+    text-align: center;
+    font-weight: bold;
+    margin: 8px 0;
+}

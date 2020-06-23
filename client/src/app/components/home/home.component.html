@@ -13,7 +13,7 @@
                         <a class="col-md-6" routerLink="/rooms">
                             <h4 class="m-0 font-weight-bold text-center">Místnosti</h4>
                         </a>
-                        <a class="col-md-6" href="">
+                        <a class="col-md-6" routerLink="/statistics">
                             <h4 class="m-0 font-weight-bold text-center">Statistiky</h4>
                         </a>
                     </div>
@@ -42,7 +42,7 @@
                             <span class="h2 text-gray-800 font-weight-bold"><span id="amount-label"></span>
                                 {{sliderValue}} °C</span>                            
                             <div class="custom-slider row justify-content-center">
-                                <ngx-slider [(value)]="sliderValue" [options]="sliderOptions"></ngx-slider>
+                                <ngx-slider [(value)]="sliderValue" [options]="sliderOptions" (mouseup)="sliderChange()"></ngx-slider>
                             </div>
                             <br><span class="text-lg">požadovaná teplota</span>
                         </div>

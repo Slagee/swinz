@@ -19,6 +19,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
 
   roomsData: Array<Room> = [];
   selectedRoom: Room;
+  userRoom = new Room();
 
   sliderValue: number = 21;
   sliderOptions: Options = {
@@ -43,39 +44,48 @@ export class RoomsComponent implements OnInit, OnDestroy {
         this.roomsData = rooms;
         this.selectedRoom = this.roomsData[0];
       },
-      (error) => alert(error),
+      (error) => console.log(error),
       () => {this.sliderValue = this.selectedRoom.selectedTemperature}
     );
 
     this.timer = interval(1000).subscribe(_x => this.updateRooms());
   }
 
+  onSubmit(): void {
+    console.log("submit");
+  }
+
   updateRooms(): void {
     this.restApiService.getAllRoomData().subscribe(
       (rooms: Array<Room>) => this.roomsData = rooms,
       (error) => console.log(error),
-      () => {this.onSelect(this.roomsData.find(x => x.id == this.selectedRoom.id)), this.sliderValue = this.selectedRoom.selectedTemperature}
+      () => {
+        this.onSelect(this.roomsData.find(x => x.id == this.selectedRoom.id));
+        this.sliderValue = this.selectedRoom.selectedTemperature}
     );
   }
 
   newRoom(): void {
-    this.restApiService.addRoom({ name: "Test3", currentTemperature: 20, selectedTemperature: 25, powerConsumption: 33, radiatorState: true, lightState: false } as unknown as Room).subscribe(room => {
-        this.roomsData.push(room)
-      });
-
-      this.updateRooms();
+    this.restApiService.addRoom({ name: "Test3", currentTemperature: 20, selectedTemperature: 25, powerConsumption: 33, radiatorState: true, lightState: false } as unknown as Room).subscribe(
+      (room) => this.roomsData.push(room),
+      (error) => console.log(error),
+      () => {this.updateRooms()}
+    );
   }
 
   sliderChange(): void {
     this.selectedRoom.selectedTemperature = this.sliderValue;
     this.restApiService.updateRoomById(this.selectedRoom, this.selectedRoom.id)
         .subscribe(
-          success => console.log(this.selectedRoom.selectedTemperature),
-          error => alert(error)
+          () => {}
         );
   }
 
   onSelect(room: Room): void {
     this.selectedRoom = room;
+  }
+
+  getCurrentRoom() {
+    return JSON.stringify(this.userRoom);
   }
 }
