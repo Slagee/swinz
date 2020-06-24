@@ -52,7 +52,11 @@ export class RoomsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    console.log("submit");
+    this.restApiService.addRoom(this.userRoom).subscribe(
+      (room) => this.roomsData.push(room),
+      (error) => console.log(error),
+      () => { this.updateRooms() }
+    );
   }
 
   updateRooms(): void {
