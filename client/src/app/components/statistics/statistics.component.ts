@@ -12,6 +12,8 @@ export class StatisticsComponent implements OnInit {
 
   faHome = faHome;
 
+  months = ['LEDEN', 'ÚNOR', 'BŘEZEN', 'DUBEN', 'KVĚTEN', 'ČERVEN', 'ČERVENEC', 'SRPEN', 'ZÁŘÍ', 'ŘÍJEN', 'LISTOPAD', 'PROSINEC'];
+
   roomsData: Array<Room>;
 
   constructor(
