@@ -63,11 +63,13 @@
                     </div>
                     <div class="tab-content col-8" id="myTabContent">
                         <div *ngIf="selectedRoom" class="tab-pane fade show active" id="{{selectedRoom.name}}" role="tabpanel" attr.aria-labelledby="{{selectedRoom.name}}-tab" >
-                            <div class="text-right">
-                                <span class="fa-stack fa-lg" id="customCross">
-                                    <fa-icon [icon]="faSquare" class="fa-stack-2x text-danger"></fa-icon>
-                                    <fa-icon [icon]="faTimes" class="fa-stack-1x text-white"></fa-icon>
-                                </span>
+                            <div class="text-right radiator-icon">
+                                <a routerLink="/rooms" (click)="radiatorCheck()">
+                                <fa-icon *ngIf="selectedRoom.radiatorState; else radiatorOff" class="fa-2x text-success" [icon]="faCheckSquare"></fa-icon>
+                                <ng-template #radiatorOff>
+                                    <fa-icon class="fa-2x text-danger " [icon]="faWindowClose"></fa-icon>
+                                </ng-template>
+                                </a>
                             </div>
                             <div class="row">
                                 <div class="col-12 text-center">

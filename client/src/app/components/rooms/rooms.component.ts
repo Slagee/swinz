@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { faPlus, faHome, faSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faHome, faSquare, faTimes, faCheckCircle, faCheck, faCheckSquare, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { Room } from 'src/app/models/room.model';
 import { Options } from '@m0t0r/ngx-slider';
 import { RestApiService } from 'src/app/services/rest-api.service';
@@ -15,7 +15,8 @@ export class RoomsComponent implements OnInit, OnDestroy {
   faPlus = faPlus;
   faHome = faHome;
   faSquare = faSquare;
-  faTimes = faTimes;
+  faWindowClose = faWindowClose;
+  faCheckSquare = faCheckSquare;
 
   roomsData: Array<Room> = [];
   selectedRoom: Room;
@@ -73,7 +74,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
     this.restApiService.addRoom({ name: "Test3", currentTemperature: 20, selectedTemperature: 25, powerConsumption: 33, radiatorState: true, lightState: false } as unknown as Room).subscribe(
       (room) => this.roomsData.push(room),
       (error) => console.log(error),
-      () => {this.updateRooms()}
+      () => { this.updateRooms() }
     );
   }
 
@@ -89,7 +90,10 @@ export class RoomsComponent implements OnInit, OnDestroy {
     this.selectedRoom = room;
   }
 
-  getCurrentRoom() {
-    return JSON.stringify(this.userRoom);
+  radiatorCheck() {
+    this.selectedRoom.radiatorState = !this.selectedRoom.radiatorState;
+    this.restApiService.updateRoomById(this.selectedRoom, this.selectedRoom.id).subscribe(
+      () => { this.updateRooms() }
+    );
   }
 }
