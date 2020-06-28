@@ -10,6 +10,8 @@ import java.time.LocalTime;
 
 public class ReportGenerator {
 
+
+    //TODO prolly delete?
     public static Report generateReport(Room room) {
         room.setCurrentTemperature(TemperatureSensor.generateTemperature(room));
         room.setLightState(LightStateSensor.generateLightState(room));
@@ -27,7 +29,7 @@ public class ReportGenerator {
         return report;
     }
 
-    public static Room generateSensorValues(Room room) {
+    public static Room generateRoomSensorValues(Room room) {
         room.setCurrentTemperature(TemperatureSensor.generateTemperature(room));
         room.setLightState(LightStateSensor.generateLightState(room));
         room.setPowerConsumption(80);

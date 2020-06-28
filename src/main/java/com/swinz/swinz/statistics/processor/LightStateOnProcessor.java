@@ -3,11 +3,12 @@ package com.swinz.swinz.statistics.processor;
 import com.swinz.swinz.enums.TimeTypeEnum;
 import com.swinz.swinz.model.Report;
 
-public class RadiatorStateOnProcessor extends ReportProcessor {
+public class LightStateOnProcessor extends ReportProcessor {
 
     @Override
     public void processReport(Report report, TimeTypeEnum timeTypeEnum) {
-        if (reportStack.getFirst() != null || report.getRadiatorState()) {
+
+        if (reportStack.getFirst() != null || report.getLightState()) {
             reportStack.addReport(report);
 
             if (isReadyForCalculation()) {
@@ -26,7 +27,8 @@ public class RadiatorStateOnProcessor extends ReportProcessor {
     }
 
     @Override
-    public boolean isReadyForCalculation() {
-        return reportStack.isFull() && !reportStack.getSecond().getRadiatorState();
+    protected boolean isReadyForCalculation() {
+        return reportStack.isFull() && !reportStack.getSecond().getLightState();
     }
+
 }

@@ -1,6 +1,7 @@
 package com.swinz.swinz.statistics.processor;
 
 
+import com.swinz.swinz.enums.TimeTypeEnum;
 import com.swinz.swinz.model.Report;
 
 import java.time.Duration;
@@ -37,7 +38,20 @@ public final class ReportStack {
         return getFirst() != null && getSecond() != null;
     }
 
-    public Long getDurationInSecondsBetweenReports() {
-        return Duration.between(getFirst().getReportTime(), getSecond().getReportTime()).toSeconds();
+    public Long getDurationBetweenReports(TimeTypeEnum timeTypeEnum) {
+        Duration returnedDuration = Duration.between(getFirst().getReportTime(), getSecond().getReportTime());
+        long returnedValue = 0;
+        switch (timeTypeEnum) {
+            case HOUR:
+                returnedValue = returnedDuration.toHours();
+                break;
+            case MINUTE:
+                returnedValue = returnedDuration.toMinutes();
+                break;
+            case SECOND:
+                returnedValue = returnedDuration.toSeconds();
+                break;
+        }
+        return returnedValue;
     }
 }

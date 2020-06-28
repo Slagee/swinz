@@ -1,7 +1,9 @@
 package com.swinz.swinz.statistics;
 
+import com.swinz.swinz.enums.TimeTypeEnum;
 import com.swinz.swinz.model.Report;
 import com.swinz.swinz.service.ReportService;
+import com.swinz.swinz.statistics.processor.LightStateOnProcessor;
 import com.swinz.swinz.statistics.processor.RadiatorStateOnProcessor;
 import com.swinz.swinz.statistics.processor.ReportProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +31,17 @@ public class StatisticsCreator {
         ReportProcessor reportProcessor = new RadiatorStateOnProcessor();
 
         for (Report report : dailyReports) {
-            reportProcessor.processReport(report);
+            reportProcessor.processReport(report, TimeTypeEnum.SECOND);
         }
 
-        reportProcessor.getTotalTime();
+        reportProcessor.getTotalTime(TimeTypeEnum.SECOND);
 
+        ReportProcessor lightStateOnProcessor = new LightStateOnProcessor();
 
+        for (Report report : dailyReports) {
+            lightStateOnProcessor.processReport(report, TimeTypeEnum.SECOND);
+        }
+
+        lightStateOnProcessor.getTotalTime(TimeTypeEnum.SECOND);
     }
-
-
 }

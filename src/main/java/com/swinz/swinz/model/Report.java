@@ -25,6 +25,13 @@ public class Report {
     public Report() {
     }
 
+    public Report(Long ID, boolean radiatorState, boolean lightState, LocalTime reportTime) {
+        this.ID = ID;
+        this.radiatorState = radiatorState;
+        this.lightState = lightState;
+        this.reportTime = reportTime;
+    }
+
     public Report(Long ID, LocalDateTime reportDateTime, Double currentTemperature, Double selectedTemperature,
                   double powerConsumption, boolean radiatorState, boolean lightState, LocalTime reportTime, Room room) {
         this.ID = ID;

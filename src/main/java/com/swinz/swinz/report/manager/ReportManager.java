@@ -33,9 +33,9 @@ public class ReportManager {
 
     @Async
     @Scheduled(fixedRate = 1000)
-    public void manageReport() {
+    public void createAndManageReport() {
         for (Room room : roomService.getAllRooms()) {
-            Room roomWithGeneratedValues = ReportGenerator.generateSensorValues(room);
+            Room roomWithGeneratedValues = ReportGenerator.generateRoomSensorValues(room);
             manageRoomTemperature(roomWithGeneratedValues);
             Report report = createReportFromRoomValues(roomWithGeneratedValues);
             reportService.addReport(report);
@@ -44,18 +44,6 @@ public class ReportManager {
     }
 
     private Report createReportFromRoomValues(Room room) {
-//        return new Report(){
-//            {
-//                setSelectedTemperature(room.getSelectedTemperature());
-//                setCurrentTemperature(room.getCurrentTemperature());
-//                setPowerConsumption(room.getPowerConsumption());
-//                setLightState(room.getLightState());
-//                setRadiatorState(room.getRadiatorState());
-//                setRoom(room);
-//                setReportDate(LocalDate.now());
-//                setReportTime(LocalTime.now());
-//            }
-//        };
         Report report = new Report();
         report.setReportTime(LocalTime.now());
         report.setReportDate(LocalDate.now());
