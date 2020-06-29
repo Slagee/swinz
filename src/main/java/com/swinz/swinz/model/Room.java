@@ -10,16 +10,13 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer ID;
+    private Long ID;
     private String name;
-    private double currentTemperature;
+    private Double currentTemperature;
     private Double selectedTemperature;
     private double powerConsumption;
     private boolean radiatorState;
     private boolean lightState;
-
-    @ManyToOne
-    private House house;
 
     @OneToMany
     private List<Report> reports;
@@ -27,7 +24,7 @@ public class Room {
     public Room() {
     }
 
-    public Room(@JsonProperty("ID") int ID, @JsonProperty("name") String name,
+    public Room(@JsonProperty("ID") Long ID, @JsonProperty("name") String name,
                 @JsonProperty("currentTemperature") double currentTemperature, @JsonProperty("selectedTemperature") double selectedTemperature,
                 @JsonProperty("powerConsumption") double powerConsumption, @JsonProperty("radiatorState") boolean radiatorState,
                 @JsonProperty("lightState") boolean lightState) {
@@ -40,11 +37,11 @@ public class Room {
         this.lightState = lightState;
     }
 
-    public int getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
@@ -56,7 +53,7 @@ public class Room {
         this.name = name;
     }
 
-    public double getCurrentTemperature() {
+    public Double getCurrentTemperature() {
         return currentTemperature;
     }
 
@@ -114,7 +111,6 @@ public class Room {
                 ", powerConsumption=" + powerConsumption +
                 ", radiatorState=" + radiatorState +
                 ", lightState=" + lightState +
-                ", house=" + house +
                 '}';
     }
 }

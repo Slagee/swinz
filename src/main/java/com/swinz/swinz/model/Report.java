@@ -10,7 +10,12 @@ public class Report {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer ID;
+    private Long ID;
+    private Double currentTemperature;
+    private Double selectedTemperature;
+    private double powerConsumption;
+    private boolean radiatorState;
+    private boolean lightState;
     private LocalDate reportDate;
     private LocalTime reportTime;
 
@@ -20,17 +25,30 @@ public class Report {
     public Report() {
     }
 
-    public Report(Integer ID, LocalDateTime reportDateTime, LocalTime reportTime, Room room) {
+    public Report(Long ID, boolean radiatorState, boolean lightState, LocalTime reportTime) {
         this.ID = ID;
+        this.radiatorState = radiatorState;
+        this.lightState = lightState;
+        this.reportTime = reportTime;
+    }
+
+    public Report(Long ID, LocalDateTime reportDateTime, Double currentTemperature, Double selectedTemperature,
+                  double powerConsumption, boolean radiatorState, boolean lightState, LocalTime reportTime, Room room) {
+        this.ID = ID;
+        this.currentTemperature = currentTemperature;
+        this.selectedTemperature = selectedTemperature;
+        this.powerConsumption = powerConsumption;
+        this.radiatorState = radiatorState;
+        this.lightState = lightState;
         this.reportTime = reportTime;
         this.room = room;
     }
 
-    public Integer getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(Integer id) {
+    public void setID(Long id) {
         this.ID = id;
     }
 
@@ -58,13 +76,58 @@ public class Report {
         this.reportTime = reportTime;
     }
 
+    public Double getCurrentTemperature() {
+        return currentTemperature;
+    }
+
+    public void setCurrentTemperature(Double currentTemperature) {
+        this.currentTemperature = currentTemperature;
+    }
+
+    public Double getSelectedTemperature() {
+        return selectedTemperature;
+    }
+
+    public void setSelectedTemperature(Double selectedTemperature) {
+        this.selectedTemperature = selectedTemperature;
+    }
+
+    public double getPowerConsumption() {
+        return powerConsumption;
+    }
+
+    public void setPowerConsumption(double powerConsumption) {
+        this.powerConsumption = powerConsumption;
+    }
+
+    public boolean getRadiatorState() {
+        return radiatorState;
+    }
+
+    public void setRadiatorState(boolean radiatorState) {
+        this.radiatorState = radiatorState;
+    }
+
+    public boolean getLightState() {
+        return lightState;
+    }
+
+    public void setLightState(boolean lightState) {
+        this.lightState = lightState;
+    }
+
+
     @Override
     public String toString() {
         return "Report{" +
-                "id=" + ID +
-                "date=" + reportDate +
-                "time=" + reportTime +
-                ", room=" + room.toString() +
+                "ID=" + ID +
+                ", currentTemperature=" + currentTemperature +
+                ", selectedTemperature=" + selectedTemperature +
+                ", powerConsumption=" + powerConsumption +
+                ", radiatorState=" + radiatorState +
+                ", lightState=" + lightState +
+                ", reportDate=" + reportDate +
+                ", reportTime=" + reportTime +
                 '}';
     }
 }
