@@ -57,10 +57,10 @@ public class ReportManager {
     }
 
     private void manageRoomTemperature(Room room) {
-        if (room.getCurrentTemperature() < room.getSelectedTemperature()) {
-            temperatureManager.raiseRoomTemperatureAndUpdateRoom(room);
-        } else if (Utils.compareWithThreshold(room.getCurrentTemperature(), room.getSelectedTemperature(), TEMPERATURE_THRESHOLD)) {
+        if (Utils.compareWithThreshold(room.getCurrentTemperature(), room.getSelectedTemperature(), TEMPERATURE_THRESHOLD)) {
             temperatureManager.keepRoomTemperatureAndUpdateRoom(room);
+        } else {
+            temperatureManager.changeRoomTemperatureAndUpdateRoom(room);
         }
     }
 }
