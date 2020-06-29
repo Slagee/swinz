@@ -32,7 +32,7 @@ public class ReportManager {
     }
 
     @Async
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 10000)
     public void createAndManageReport() {
         for (Room room : roomService.getAllRooms()) {
             Room roomWithGeneratedValues = ReportGenerator.generateRoomSensorValues(room);
