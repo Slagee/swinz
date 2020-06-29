@@ -4,6 +4,7 @@ import { Room } from 'src/app/models/room.model';
 import { Options } from '@m0t0r/ngx-slider';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { interval } from 'rxjs';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-rooms',
@@ -49,6 +50,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
     );
 
     this.timer = interval(10000).subscribe(_x => this.updateRooms());
+    this.userRoom.selectedTemperature = 21.0;
   }
 
   onSubmit(): void {
@@ -71,7 +73,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
 
   sliderChange(): void {
     this.selectedRoom.selectedTemperature = this.sliderValue;
-    this.restApiService.updateRoomById(this.selectedRoom, this.selectedRoom.id).subscribe(
+    this.restApiService.updateRoomById(this.selectedRoom, this.selectedRoom.id).subscribe(  
           () => { this.updateRooms }
         );
   }
@@ -86,5 +88,13 @@ export class RoomsComponent implements OnInit, OnDestroy {
     this.restApiService.updateRoomById(this.selectedRoom, this.selectedRoom.id).subscribe(
       () => { this.updateRooms() }
     );
+  }
+
+  onChange() {
+    if (this.userRoom.selectedTemperature < 15) {
+      this.userRoom.selectedTemperature = 15;
+    } else if (this.userRoom.selectedTemperature > 30) {
+      this.userRoom.selectedTemperature = 30;
+    }
   }
 }
