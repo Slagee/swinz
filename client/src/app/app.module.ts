@@ -8,7 +8,7 @@ import { AppComponent } from './components/layout/app.component';
 import { HomeComponent } from './components/home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RoomsComponent } from './components/rooms/rooms.component';
-import { NotFoundComponent } from './error-pages/not-found/not-found.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { FormsModule } from '@angular/forms';
