@@ -5,5 +5,6 @@ export class Room {
     powerConsumption: number | null = null;
     radiatorState: boolean | null = null;
     lightState: boolean | null = null;
+    lightWeeklyConsumption: number | null = null;
     id: number | null = null;
 }

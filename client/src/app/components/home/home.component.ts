@@ -53,8 +53,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         {
           this.roomsData = roomsData;
           this.sliderValue = this.roomsData[0].selectedTemperature;
+          this.sortRooms();
         },
-      () => {}
+      () => {  }
     );
 
     this.timer = interval(10000).subscribe(_x => this.getRooms());
@@ -63,8 +64,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   getRooms(): void {
     this.restApiService.getAllRoomData()
     .subscribe(
-      (roomsData: Array<Room>) => this.roomsData = roomsData,
-      () => {}
+      (roomsData: Array<Room>) => {
+        this.roomsData = roomsData;
+        this.sortRooms();
+      },
+      () => { }
     );
   }
 
@@ -90,5 +94,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         () => { this.getRooms() }
       )
     });
+  }
+
+  sortRooms() {
+    this.roomsData = this.roomsData.sort((a, b) => a.id - b.id);
   }
 }

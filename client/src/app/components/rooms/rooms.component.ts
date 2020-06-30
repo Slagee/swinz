@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { faPlus, faHome, faSquare, faTimes, faCheckCircle, faCheck, faCheckSquare, faWindowClose } from '@fortawesome/free-solid-svg-icons';
-import { Room } from 'src/app/models/room.model';
+import { faPlus, faHome, faSquare, faCheckSquare, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { Options } from '@m0t0r/ngx-slider';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { interval } from 'rxjs';
-import { element } from 'protractor';
+import { Room } from 'src/app/models/room.model';
 
 @Component({
   selector: 'app-rooms',
@@ -45,18 +44,22 @@ export class RoomsComponent implements OnInit, OnDestroy {
       (rooms: Array<Room>) => {
         this.roomsData = rooms;
       },
-      (error) => console.log(error),
-      () => { this.onSelect(this.roomsData[0]); }
+      (error: any) => console.log(error),
+      () => {
+        this.onSelect(this.roomsData[0]);
+        this.sortRooms();
+      }
     );
 
     this.timer = interval(10000).subscribe(_x => this.updateRooms());
     this.userRoom.selectedTemperature = 21.0;
+    
   }
 
   onSubmit(): void {
     this.restApiService.addRoom(this.userRoom).subscribe(
-      (room) => this.roomsData.push(room),
-      (error) => console.log(error),
+      (room: Room) => this.roomsData.push(room),
+      (error: any) => console.log(error),
       () => { this.updateRooms(); }
     );
   }
@@ -64,9 +67,10 @@ export class RoomsComponent implements OnInit, OnDestroy {
   updateRooms(): void {
     this.restApiService.getAllRoomData().subscribe(
       (rooms: Array<Room>) => this.roomsData = rooms,
-      (error) => console.log(error),
+      (error: any) => console.log(error),
       () => {
         this.onSelect(this.roomsData.find(x => x.id == this.selectedRoom.id));
+        this.sortRooms();
       }
     );
   }
@@ -81,6 +85,10 @@ export class RoomsComponent implements OnInit, OnDestroy {
   onSelect(room: Room): void {
     this.selectedRoom = room;
     this.sliderValue = this.selectedRoom.selectedTemperature;
+    this.restApiService.getLightStatsByRoomId(this.selectedRoom.id).subscribe(
+      (x: number) => this.selectedRoom.lightWeeklyConsumption = x * 60,
+      () => {}
+    );
   }
 
   radiatorCheck() {
@@ -96,5 +104,9 @@ export class RoomsComponent implements OnInit, OnDestroy {
     } else if (this.userRoom.selectedTemperature > 30) {
       this.userRoom.selectedTemperature = 30;
     }
+  }
+
+  sortRooms() {
+    this.roomsData = this.roomsData.sort((a, b) => a.id - b.id);
   }
 }

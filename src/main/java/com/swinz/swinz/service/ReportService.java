@@ -57,4 +57,8 @@ public class ReportService {
     public List<Report> getReportsByLocalDateAndRoomID(LocalDate localDate, Long roomID) {
         return reportRepository.findReportsByReportDateAndRoom_ID(localDate, roomID);
     }
+
+    public void deleteReportsByLocalDate(LocalDate localDate) {
+        reportRepository.deleteReportsByReportDate(localDate);
+    }
 }
