@@ -17,7 +17,7 @@ export class RestApiService {
 
   getAllRoomData(): Observable<any> 
   {
-    return this.http.get<Array<Room>>(ApiManager.BACKEND_API + '/rooms')
+    return this.http.get<Array<Room>>(ApiManager.BACKEND_API + '/rooms');
   }
 
   getRoomsDataById(id: number): Observable<any>
@@ -35,5 +35,11 @@ export class RestApiService {
   addRoom(room: Room): Observable<any>
   {
     return this.http.post<Room>(ApiManager.BACKEND_API + '/rooms', room, this.httpOptions);
+  }
+
+  /** GET STATS */
+  getLightStatsByRoomId(id: number): Observable<any>
+  {
+    return this.http.get(ApiManager.BACKEND_API + '/stats/weeklyLight/' + id);
   }
 }

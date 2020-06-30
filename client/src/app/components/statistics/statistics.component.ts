@@ -26,7 +26,7 @@ export class StatisticsComponent implements OnInit {
         this.roomsData = rooms;
       },
       (error) => console.log(error),
-      () => {}
+      () => { this.roomsData = this.roomsData.sort((a, b) => a.id - b.id); }
     );
   }
 
