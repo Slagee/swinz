@@ -12,4 +12,6 @@ public interface ReportRepository extends CrudRepository<Report, Long> {
     List<Report> findReportsByReportDate(LocalDate date);
 
     List<Report> findReportsByReportDateAndRoom_ID(LocalDate date, Long roomID);
+
+    void deleteReportsByReportDate(LocalDate date);
 }
