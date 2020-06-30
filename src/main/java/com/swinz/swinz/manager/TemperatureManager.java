@@ -19,9 +19,13 @@ public class TemperatureManager {
         this.roomService = roomService;
     }
 
-    public void raiseRoomTemperatureAndUpdateRoom(Room room) {
+    public void changeRoomTemperatureAndUpdateRoom(Room room) {
         double currentTemperature = room.getCurrentTemperature();
-        room.setCurrentTemperature(raiseRoomTemperature(currentTemperature));
+        if (room.getSelectedTemperature() > room.getCurrentTemperature()) {
+            room.setCurrentTemperature(raiseRoomTemperature(currentTemperature));
+        } else {
+            room.setCurrentTemperature(lowerRoomTemperature(currentTemperature));
+        }
         room.setRadiatorState(true);
         roomService.updateRoom(room, room.getID());
     }
@@ -29,6 +33,10 @@ public class TemperatureManager {
     public void keepRoomTemperatureAndUpdateRoom(Room room) {
         room.setRadiatorState(false);
         roomService.updateRoom(room, room.getID());
+    }
+
+    private double lowerRoomTemperature(double currentTemperature) {
+        return BigDecimal.valueOf(currentTemperature).subtract(BigDecimal.valueOf(TEMPERATURE_RAISE)).doubleValue();
     }
 
     private double raiseRoomTemperature(double currentTemperature) {
