@@ -49,4 +49,8 @@ public class DailyStatisticsService {
     public void addDailyStatistics(DailyStatistics dailyStatistics) {
         dailyStatisticsRepository.save(dailyStatistics);
     }
+
+    public List<DailyStatistics> getDailyStatisticsByRoomIDAndMonthValue(long id, int monthValue) {
+        return dailyStatisticsRepository.findDailyStatisticsByRoom_IDAndDate_MonthValue(id, monthValue);
+    }
 }

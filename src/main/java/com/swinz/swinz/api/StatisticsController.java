@@ -20,4 +20,19 @@ public class StatisticsController {
     public double getAverageLightStateForLastWeekByRoomID(@PathVariable long id) {
         return statisticsPseudoService.getAverageLightStateForLastWeekByRoomID(id);
     }
+
+    @RequestMapping("/stats/daysOfRadiator")
+    public int getNumberOfDaysWhenRadiatorWasOn() {
+        return statisticsPseudoService.getNumberOfDaysWhenRadiatorWasOn();
+    }
+
+    @RequestMapping("stats/monthlyLight/{roomID}/{monthValue}")
+    public double getAverageLightStateByRoomIDAndMonthValue(@PathVariable long roomID, @PathVariable int monthValue) {
+        return statisticsPseudoService.getAverageLightStateByRoomIDAndMonthValue(roomID, monthValue);
+    }
+
+    @RequestMapping("stats/monthlyPower/{roomID}/{monthValue}")
+    public int getMonthlyPowerConsumptionByRoomIDAndMonthValue(@PathVariable long roomID, @PathVariable int monthValue) {
+        return statisticsPseudoService.getMonthlyPowerConsumptionByRoomIDAndMonthValue(roomID, monthValue);
+    }
 }
