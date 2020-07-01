@@ -10,4 +10,6 @@ public interface DailyStatisticsRepository extends CrudRepository<DailyStatistic
     DailyStatistics findDailyStatisticsByRoom_IDAndDate(long id, LocalDate date);
 
     List<DailyStatistics> findDailyStatisticsByRoom_IDAndDateBetween(long id, LocalDate first, LocalDate second);
+
+    List<DailyStatistics> findDailyStatisticsByRoom_IDAndDate_MonthValue(long id, int monthValue);
 }

@@ -17,16 +17,14 @@ public class TemperatureSensor {
             double randomValue = (Math.random() * ((MAXIMAL_TEMPERATURE - MINIMAL_TEMPERATURE) + 1)) + MINIMAL_TEMPERATURE;
             return BigDecimal.valueOf(randomValue).round(new MathContext(4)).doubleValue();
         }
-
-        if (room.getRadiatorState()) {
+        if (room.getRadiatorState() ||
+                room.isRadiatorForcedDown() ||
+                Utils.compareWithThreshold(room.getCurrentTemperature(), room.getSelectedTemperature(), TEMPERATURE_THRESHOLD)) {
             return room.getCurrentTemperature();
+        } else {
+            double randomValue = (Math.random() * ((MAXIMAL_TEMPERATURE - MINIMAL_TEMPERATURE) + 1)) + MINIMAL_TEMPERATURE;
+            return BigDecimal.valueOf(randomValue).round(new MathContext(4)).doubleValue();
         }
-        if (Utils.compareWithThreshold(room.getCurrentTemperature(), room.getSelectedTemperature(), TEMPERATURE_THRESHOLD)) {
-            return room.getCurrentTemperature();
-        }
-        double randomValue = (Math.random() * ((MAXIMAL_TEMPERATURE - MINIMAL_TEMPERATURE) + 1)) + MINIMAL_TEMPERATURE;
-        return BigDecimal.valueOf(randomValue).round(new MathContext(4)).doubleValue();
-
     }
 
 }

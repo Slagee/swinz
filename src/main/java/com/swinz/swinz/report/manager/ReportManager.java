@@ -35,7 +35,7 @@ public class ReportManager {
     }
 
     @Async
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 3000)
     public void createAndManageReport() {
         for (Room room : roomService.getAllRooms()) {
             Room roomWithGeneratedValues = ReportGenerator.generateRoomSensorValues(room);
@@ -60,10 +60,14 @@ public class ReportManager {
     }
 
     private void manageRoomTemperature(Room room) {
-        if (Utils.compareWithThreshold(room.getCurrentTemperature(), room.getSelectedTemperature(), TEMPERATURE_THRESHOLD)) {
-            temperatureManager.keepRoomTemperatureAndUpdateRoom(room);
+        if (room.isRadiatorForcedDown()) {
+            temperatureManager.lowerToBasicRoomTemperatureAndUpdateRoom(room);
         } else {
-            temperatureManager.changeRoomTemperatureAndUpdateRoom(room);
+            if (Utils.compareWithThreshold(room.getCurrentTemperature(), room.getSelectedTemperature(), TEMPERATURE_THRESHOLD)) {
+                temperatureManager.keepRoomTemperatureAndUpdateRoom(room);
+            } else {
+                temperatureManager.changeRoomTemperatureAndUpdateRoom(room);
+            }
         }
     }
 }
