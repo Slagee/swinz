@@ -24,14 +24,8 @@ public class StatisticsPseudoService {
         return getLightStateInHours(dailyStatistics) / 7.0;
     }
 
-    public int getNumberOfDaysWhenRadiatorWasOn() {
-        int numberOfDaysWhenRadiatorWasOn = 0;
-        for (DailyStatistics dailyStatistic : dailyStatisticsService.getAllDailyStatistics()) {
-            if (dailyStatistic.getRadiatorOnTimeInSeconds() != 0) {
-                numberOfDaysWhenRadiatorWasOn++;
-            }
-        }
-        return numberOfDaysWhenRadiatorWasOn;
+    public int getNumberOfDaysInYearWhenRadiatorWasOn() {
+        return getNumberOfDaysInYearWhenRadiatorWasOn(dailyStatisticsService.getAllDailyStatistics());
     }
 
     public double getAverageLightStateByRoomIDAndMonthValue(long id, int monthValue) {
@@ -47,12 +41,26 @@ public class StatisticsPseudoService {
         return summedPowerConsumption;
     }
 
+    public int getNumberOfDaysInMonthWhenRadiatorWasOn(long roomID, int monthValue) {
+        return getNumberOfDaysInYearWhenRadiatorWasOn(dailyStatisticsService.getDailyStatisticsByRoomIDAndMonthValue(roomID, monthValue));
+    }
+
     private double getLightStateInHours(List<DailyStatistics> dailyStatisticsList) {
         double summedLightStateInSeconds = 0;
         for (DailyStatistics dailyStatistics : dailyStatisticsList) {
             summedLightStateInSeconds += dailyStatistics.getLightOnTimeInSeconds();
         }
         return summedLightStateInSeconds / 3600.0;
+    }
+
+    private int getNumberOfDaysInYearWhenRadiatorWasOn(List<DailyStatistics> dailyStatistics) {
+        int numberOfDaysWhenRadiatorWasOn = 0;
+        for (DailyStatistics dailyStatistic : dailyStatistics) {
+            if (dailyStatistic.getRadiatorOnTimeInSeconds() != 0) {
+                numberOfDaysWhenRadiatorWasOn++;
+            }
+        }
+        return numberOfDaysWhenRadiatorWasOn;
     }
 
 }
