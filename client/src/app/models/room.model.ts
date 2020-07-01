@@ -6,5 +6,7 @@ export class Room {
     radiatorState: boolean | null = null;
     lightState: boolean | null = null;
     lightWeeklyConsumption: number | null = null;
+    monthlyLight: any[] | null = null;
+    totalPowerConsumption: any[] | null = null;
     id: number | null = null;
 }
