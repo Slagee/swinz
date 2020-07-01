@@ -53,9 +53,14 @@ export class RestApiService {
     return this.http.get(ApiManager.BACKEND_API + '/stats/monthlyPower/' + id + '/' + month);
   }
 
+  getMonthlyRadiator(id: number, month: number): Observable<any>
+  {
+    return this.http.get(ApiManager.BACKEND_API + '/stats/monthlyDaysOfRadiator/' + id + '/' + month);
+  }
+
   // Data for graph on home page
   getTotalDaysOfRadiatorOn()
   {
-    return this.http.get(ApiManager.BACKEND_API + '/stats/daysOfRadiator');
+    return this.http.get(ApiManager.BACKEND_API + '/stats/yearlyDaysOfRadiator');
   }
 }

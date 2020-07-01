@@ -27,9 +27,9 @@
                             </div>
                             <div *ngFor="let room of roomsData" class="d-flex w-100 room-data" >
                                 <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
-                                <h5 class="data-text text-gray-900 col-2">0</h5>
-                                <h5 class="data-text text-gray-900 col-2">{{ room.monthlyLight[month.id-1] }}  min</h5>
-                                <h5 class="data-text text-gray-900 col-2">{{ room.totalPowerConsumption[month.id-1] }} W</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.monthlyRadiatorTime[month.id-1] }}</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.monthlyLight[month.id-1] }} min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ room.monthlyPowerConsumption[month.id-1] }} W</h5>
                             </div>
                         </div>
                     </div>

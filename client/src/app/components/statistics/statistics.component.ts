@@ -31,8 +31,10 @@ export class StatisticsComponent implements OnInit {
       () => { 
         this.roomsData = this.roomsData.sort((a, b) => a.id - b.id);
         for (let i = 0; i < this.roomsData.length; i++) {
+          
           this.roomsData[i].monthlyLight = [];
-          this.roomsData[i].totalPowerConsumption = [];
+          this.roomsData[i].monthlyPowerConsumption = [];
+          this.roomsData[i].monthlyRadiatorTime = [];
 
           this.months.forEach(month => {
             this.restApiService.getMonthlyLight(this.roomsData[i].id, month.id).subscribe(
@@ -41,12 +43,20 @@ export class StatisticsComponent implements OnInit {
                 this.roomsData[i].monthlyLight.push(res);
               }
             );
+
             this.restApiService.getMonthlyPower(this.roomsData[i].id, month.id).subscribe(
               (res) => {
                 res = Math.round(res);
-                this.roomsData[i].totalPowerConsumption.push(res);
+                this.roomsData[i].monthlyPowerConsumption.push(res);
               }
-            )
+            );
+
+            this.restApiService.getMonthlyRadiator(this.roomsData[i].id, month.id).subscribe(
+              (res) => {
+                res = Math.round(res);
+                this.roomsData[i].monthlyRadiatorTime.push(res);
+              }
+            );
           });
         }
       }
