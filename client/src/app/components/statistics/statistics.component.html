@@ -20,7 +20,7 @@
                     <div class="list-group">
                         <div *ngFor="let month of months" class="list-group-item flex-column align-items-start">
                             <div class="d-flex w-100">
-                                <h4 class="mb-2 text-gray-900 font-weight-bold col-4">{{ month }}</h4>
+                                <h4 class="mb-2 text-gray-900 font-weight-bold col-4">{{ month.name }}</h4>
                                 <small class="small-text col-2">dnů zapnuto vytápění</small>
                                 <small class="small-text col-2">průměrná denní doba svícení</small>
                                 <small class="small-text col-2">spotřeba energie</small>
@@ -28,7 +28,7 @@
                             <div *ngFor="let room of roomsData" class="d-flex w-100 room-data">
                                 <h5 class="mb-2 mt-2 text-gray-900 font-weight-bold col-4">{{ room.name }}</h5>
                                 <h5 class="data-text text-gray-900 col-2">0</h5>
-                                <h5 class="data-text text-gray-900 col-2">0 min</h5>
+                                <h5 class="data-text text-gray-900 col-2">{{ getLightStatistics(room.id, month.id) }} min</h5>
                                 <h5 class="data-text text-gray-900 col-2">{{ room.powerConsumption }} W</h5>
                             </div>
                         </div>

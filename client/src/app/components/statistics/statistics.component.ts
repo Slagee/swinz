@@ -12,9 +12,12 @@ export class StatisticsComponent implements OnInit {
 
   faHome = faHome;
 
-  months = ['LEDEN', 'ÚNOR', 'BŘEZEN', 'DUBEN', 'KVĚTEN', 'ČERVEN', 'ČERVENEC', 'SRPEN', 'ZÁŘÍ', 'ŘÍJEN', 'LISTOPAD', 'PROSINEC'];
+  months = [{id: 1, name: 'LEDEN'}, {id: 2, name:'ÚNOR'}, {id: 3, name:'BŘEZEN'}, {id: 4, name: 'DUBEN'}, {id: 5, name: 'KVĚTEN'},
+            {id: 6, name: 'ČERVEN'}, {id: 7, name: 'ČERVENEC'}, {id: 8, name: 'SRPEN'}, {id: 9, name: 'ZÁŘÍ'}, {id: 10, name: 'ŘÍJEN'},
+            {id: 11, name: 'LISTOPAD'}, {id: 12, name: 'PROSINEC'}];
 
   roomsData: Array<Room>;
+
 
   constructor(
     private readonly restApiService: RestApiService
@@ -26,8 +29,18 @@ export class StatisticsComponent implements OnInit {
         this.roomsData = rooms;
       },
       (error) => console.log(error),
-      () => { this.roomsData = this.roomsData.sort((a, b) => a.id - b.id); }
+      () => { 
+        this.roomsData = this.roomsData.sort((a, b) => a.id - b.id);
+      }
     );
+
+    this.months.forEach(month => {
+      
+    });
+  }
+
+  getLightStatistics(roomId: number, monthId: number) {
+    return this.restApiService.getMonthlyLight(roomId, monthId).subscribe();
   }
 
 }
