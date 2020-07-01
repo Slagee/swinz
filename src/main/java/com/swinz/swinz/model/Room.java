@@ -17,6 +17,7 @@ public class Room {
     private double powerConsumption;
     private boolean radiatorState;
     private boolean lightState;
+    private boolean radiatorForcedDown;
 
     @OneToMany
     private List<Report> reports;
@@ -27,7 +28,7 @@ public class Room {
     public Room(@JsonProperty("ID") Long ID, @JsonProperty("name") String name,
                 @JsonProperty("currentTemperature") double currentTemperature, @JsonProperty("selectedTemperature") double selectedTemperature,
                 @JsonProperty("powerConsumption") double powerConsumption, @JsonProperty("radiatorState") boolean radiatorState,
-                @JsonProperty("lightState") boolean lightState) {
+                @JsonProperty("lightState") boolean lightState, @JsonProperty("radiatorForcedDown") boolean radiatorForcedDown) {
         this.ID = ID;
         this.name = name;
         this.currentTemperature = currentTemperature;
@@ -35,6 +36,7 @@ public class Room {
         this.powerConsumption = powerConsumption;
         this.radiatorState = radiatorState;
         this.lightState = lightState;
+        this.radiatorForcedDown = radiatorForcedDown;
     }
 
     public Long getID() {
@@ -99,6 +101,14 @@ public class Room {
 
     public void setReports(List<Report> reports) {
         this.reports = reports;
+    }
+
+    public boolean isRadiatorForcedDown() {
+        return radiatorForcedDown;
+    }
+
+    public void setRadiatorForcedDown(boolean radiatorForcedDown) {
+        this.radiatorForcedDown = radiatorForcedDown;
     }
 
     @Override
