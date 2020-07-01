@@ -86,7 +86,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
     this.selectedRoom = room;
     this.sliderValue = this.selectedRoom.selectedTemperature;
     this.restApiService.getLightStatsByRoomId(this.selectedRoom.id).subscribe(
-      (x: number) => this.selectedRoom.lightWeeklyConsumption = x * 60,
+      (x: number) => this.selectedRoom.lightWeeklyConsumption = x,
       () => {}
     );
   }
