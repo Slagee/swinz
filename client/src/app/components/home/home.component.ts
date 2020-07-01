@@ -14,21 +14,14 @@ import { interval } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  roomsData: Array<Room> = [];
-
-  globalRadiatorState: boolean = false;
-
+  // Chart section
   doughnutChartLabels: Label[] = ['Zapnuto', 'Vypnuto', 'Zbývá'];
   doughnutChartData: MultiDataSet = [
-    [60, 10, 30]
+    []
   ];
   doughnutChartType: ChartType = 'doughnut';
 
-  faCheckCircle = faCheckCircle;
-  faTimesCircle = faTimesCircle;
-  faTimes = faTimes;
-  faCircle = faCircle;
-
+  // Slider section
   sliderValue: number = 21.0;
   sliderOptions: Options = {
     floor: 15,
@@ -36,7 +29,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     step: 0.1
   }
 
+  // Icons section
+  faCheckCircle = faCheckCircle;
+  faTimesCircle = faTimesCircle;
+  faTimes = faTimes;
+  faCircle = faCircle;
+
+  // Variables
   private timer: any
+  roomsData: Array<Room> = [];
+  globalRadiatorState: boolean = false;
 
   constructor(
     private readonly restApiService: RestApiService
@@ -57,7 +59,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
       () => {  }
     );
-
+    
+    this.chartSetting();
     this.timer = interval(10000).subscribe(_x => this.getRooms());
   }
 
@@ -90,7 +93,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.roomsData.forEach(room => {
       room.selectedTemperature = this.sliderValue;
       this.restApiService.updateRoomById(room, room.id).subscribe(
-        (_success) => console.log(room.selectedTemperature),
         () => { this.getRooms() }
       )
     });
@@ -98,5 +100,24 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   sortRooms() {
     this.roomsData = this.roomsData.sort((a, b) => a.id - b.id);
+  }
+
+  chartSetting() {
+    const oneDay = 1000*60*60*24;
+    const firstDay = new Date(new Date().getFullYear(), 0, 1).setHours(0,0,0);
+    const today = new Date().setHours(0,0,0);
+    const lastDay = new Date(new Date().getFullYear(), 11, 0).setHours(0, 0, 0);
+
+    const diffDays = Math.round(Math.abs((firstDay - today) / oneDay));
+    const remainingDays = Math.round(Math.abs((today - lastDay) / oneDay));
+    
+
+    this.restApiService.getTotalDaysOfRadiatorOn().subscribe(
+      (res: number) => {
+        this.doughnutChartData[0][0] = res;
+        this.doughnutChartData[0][1] = diffDays - res;
+        this.doughnutChartData[0][2] = remainingDays;
+      }
+    );
   }
 }
