@@ -7,6 +7,7 @@ export class Room {
     radiatorForcedDown: boolean | null = null;
     lightWeeklyConsumption: number | null = null;
     monthlyLight: any[] | null = null;
-    totalPowerConsumption: any[] | null = null;
+    monthlyPowerConsumption: any[] | null = null;
+    monthlyRadiatorTime: any[] | null = null;
     id: number | null = null;
 }
