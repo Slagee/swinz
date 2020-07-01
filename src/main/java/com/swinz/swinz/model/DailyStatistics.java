@@ -13,6 +13,7 @@ public class DailyStatistics {
     private double lightOnTimeInSeconds;
     private double powerConsumption;
     private LocalDate date;
+    private int month;
 
     @ManyToOne
     private Room room;
@@ -75,5 +76,14 @@ public class DailyStatistics {
 
     public void setDate(LocalDate date) {
         this.date = date;
+        setMonth(date.getMonth().getValue());
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
     }
 }

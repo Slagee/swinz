@@ -37,9 +37,25 @@ export class RestApiService {
     return this.http.post<Room>(ApiManager.BACKEND_API + '/rooms', room, this.httpOptions);
   }
 
-  /** GET STATS */
-  getLightStatsByRoomId(id: number): Observable<any>
+  /** STATS */
+  getLightStatsByRoomId(id: number)
   {
     return this.http.get(ApiManager.BACKEND_API + '/stats/weeklyLight/' + id);
+  }
+
+  getMonthlyLight(id: number, month: number): Observable<any>
+  {
+    return this.http.get(ApiManager.BACKEND_API + '/stats/monthlyLight/' + id + '/' + month);
+  }
+
+  getMonthlyPower(id: number, month: number): Observable<any>
+  {
+    return this.http.get(ApiManager.BACKEND_API + '/stats/monthlyPower/' + id + '/' + month);
+  }
+
+  // Data for graph on home page
+  getTotalDaysOfRadiatorOn()
+  {
+    return this.http.get(ApiManager.BACKEND_API + '/stats/daysOfRadiator');
   }
 }

@@ -65,7 +65,7 @@
                         <div *ngIf="selectedRoom" class="tab-pane fade show active" id="{{selectedRoom.name}}" role="tabpanel" attr.aria-labelledby="{{selectedRoom.name}}-tab" >
                             <div class="text-right radiator-icon">
                                 <a routerLink="/rooms" (click)="radiatorCheck()">
-                                <fa-icon *ngIf="selectedRoom.radiatorState; else radiatorOff" class="fa-2x text-success" [icon]="faCheckSquare"></fa-icon>
+                                <fa-icon *ngIf="!selectedRoom.radiatorForcedDown && selectedRoom.radiatorState; else radiatorOff" class="fa-2x text-success" [icon]="faCheckSquare"></fa-icon>
                                 <ng-template #radiatorOff>
                                     <fa-icon class="fa-2x text-danger " [icon]="faWindowClose"></fa-icon>
                                 </ng-template>

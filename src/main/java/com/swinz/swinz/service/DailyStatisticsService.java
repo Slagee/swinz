@@ -51,6 +51,6 @@ public class DailyStatisticsService {
     }
 
     public List<DailyStatistics> getDailyStatisticsByRoomIDAndMonthValue(long id, int monthValue) {
-        return dailyStatisticsRepository.findDailyStatisticsByRoom_IDAndDate_MonthValue(id, monthValue);
+        return dailyStatisticsRepository.findDailyStatisticsByRoom_IDAndMonth(id, monthValue);
     }
 }

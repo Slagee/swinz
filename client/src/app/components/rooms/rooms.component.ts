@@ -78,7 +78,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
   sliderChange(): void {
     this.selectedRoom.selectedTemperature = this.sliderValue;
     this.restApiService.updateRoomById(this.selectedRoom, this.selectedRoom.id).subscribe(  
-          () => { this.updateRooms }
+          () => { this.updateRooms() }
         );
   }
 
@@ -92,7 +92,8 @@ export class RoomsComponent implements OnInit, OnDestroy {
   }
 
   radiatorCheck() {
-    this.selectedRoom.radiatorState = !this.selectedRoom.radiatorState;
+    this.selectedRoom.radiatorForcedDown = !this.selectedRoom.radiatorForcedDown;
+    console.log(this.selectedRoom.radiatorForcedDown);
     this.restApiService.updateRoomById(this.selectedRoom, this.selectedRoom.id).subscribe(
       () => { this.updateRooms() }
     );
