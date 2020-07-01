@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Component
-public class StatisticsCreator {
+public class DailyStatisticsCreator {
 
     private final ReportService reportService;
     private final DailyStatisticsService dailyStatisticsService;
@@ -30,7 +30,7 @@ public class StatisticsCreator {
     private final ReportProcessor lightStateOnProcessor = new LightStateOnProcessor();
 
     @Autowired
-    public StatisticsCreator(ReportService reportService, DailyStatisticsService dailyStatisticsService, RoomService roomService) {
+    public DailyStatisticsCreator(ReportService reportService, DailyStatisticsService dailyStatisticsService, RoomService roomService) {
         this.reportService = reportService;
         this.dailyStatisticsService = dailyStatisticsService;
         this.roomService = roomService;

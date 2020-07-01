@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.List;
 
 @Service
 public class StatisticsPseudoService {
@@ -17,11 +19,40 @@ public class StatisticsPseudoService {
     }
 
     public double getAverageLightStateForLastWeekByRoomID(long id) {
-        double sumInSeconds = 0;
-        for (DailyStatistics dailyStatistics : dailyStatisticsService.getDailyStatisticsByRoomIDAndDateBetween(id, LocalDate.now().minusDays(7), LocalDate.now())) {
-            sumInSeconds += dailyStatistics.getLightOnTimeInSeconds();
-        }
-        double sumInHours = sumInSeconds / 3600.0;
-        return sumInHours / 7.0;
+        List<DailyStatistics> dailyStatistics =
+                dailyStatisticsService.getDailyStatisticsByRoomIDAndDateBetween(id, LocalDate.now().minusDays(7), LocalDate.now());
+        return getLightStateInHours(dailyStatistics) / 7.0;
     }
+
+    public int getNumberOfDaysWhenRadiatorWasOn() {
+        int numberOfDaysWhenRadiatorWasOn = 0;
+        for (DailyStatistics dailyStatistic : dailyStatisticsService.getAllDailyStatistics()) {
+            if (dailyStatistic.getRadiatorOnTimeInSeconds() != 0) {
+                numberOfDaysWhenRadiatorWasOn++;
+            }
+        }
+        return numberOfDaysWhenRadiatorWasOn;
+    }
+
+    public double getAverageLightStateByRoomIDAndMonthValue(long id, int monthValue) {
+        List<DailyStatistics> dailyStatistics = dailyStatisticsService.getDailyStatisticsByRoomIDAndMonthValue(id, monthValue);
+        return getLightStateInHours(dailyStatistics) / (YearMonth.of(LocalDate.now().getYear(), monthValue).lengthOfMonth());
+    }
+
+    public int getMonthlyPowerConsumptionByRoomIDAndMonthValue(long id, int monthValue) {
+        int summedPowerConsumption = 0;
+        for (DailyStatistics dailyStatistics : dailyStatisticsService.getDailyStatisticsByRoomIDAndMonthValue(id, monthValue)) {
+            summedPowerConsumption += dailyStatistics.getPowerConsumption();
+        }
+        return summedPowerConsumption;
+    }
+
+    private double getLightStateInHours(List<DailyStatistics> dailyStatisticsList) {
+        double summedLightStateInSeconds = 0;
+        for (DailyStatistics dailyStatistics : dailyStatisticsList) {
+            summedLightStateInSeconds += dailyStatistics.getLightOnTimeInSeconds();
+        }
+        return summedLightStateInSeconds / 3600.0;
+    }
+
 }

@@ -2,12 +2,14 @@ package com.swinz.swinz.manager;
 
 import com.swinz.swinz.model.Room;
 import com.swinz.swinz.service.RoomService;
+import com.swinz.swinz.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
 import static com.swinz.swinz.constants.Constants.TEMPERATURE_RAISE;
+import static com.swinz.swinz.constants.Constants.TEMPERATURE_THRESHOLD;
 
 @Component
 public class TemperatureManager {
@@ -27,6 +29,14 @@ public class TemperatureManager {
             room.setCurrentTemperature(lowerRoomTemperature(currentTemperature));
         }
         room.setRadiatorState(true);
+        roomService.updateRoom(room, room.getID());
+    }
+
+    public void lowerToBasicRoomTemperatureAndUpdateRoom(Room room) {
+        if (!Utils.compareWithThreshold(room.getCurrentTemperature(), 18, TEMPERATURE_THRESHOLD)) {
+            room.setCurrentTemperature(lowerRoomTemperature(room.getCurrentTemperature()));
+        }
+        room.setRadiatorState(false);
         roomService.updateRoom(room, room.getID());
     }
 
