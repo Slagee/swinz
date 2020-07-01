@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <button *ngIf="globalRadiatorState; else off" class="btn btn-success mx-auto" type="button" (click)="changeGlobalRadiatorSettings()">
+                        <button *ngIf="roomsData[0].radiatorForcedDown; else off" class="btn btn-success mx-auto" type="button" (click)="changeGlobalRadiatorSettings()">
                             <fa-icon [icon]="faCheckCircle"></fa-icon>
                         </button>
                         <ng-template #off>

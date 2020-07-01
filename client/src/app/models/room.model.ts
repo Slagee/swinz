@@ -4,7 +4,7 @@ export class Room {
     selectedTemperature: number | null = null;
     powerConsumption: number | null = null;
     radiatorState: boolean | null = null;
-    lightState: boolean | null = null;
+    radiatorForcedDown: boolean | null = null;
     lightWeeklyConsumption: number | null = null;
     monthlyLight: any[] | null = null;
     totalPowerConsumption: any[] | null = null;

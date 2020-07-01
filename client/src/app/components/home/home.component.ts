@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
     
     this.chartSetting();
-    this.timer = interval(10000).subscribe(_x => this.getRooms());
+    this.timer = interval(5000).subscribe(_x => this.getRooms());
   }
 
   getRooms(): void {
@@ -76,17 +76,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   changeGlobalRadiatorSettings(): void {
-    this.getRooms();
     this.roomsData.forEach(room => {
-      room.radiatorState = this.globalRadiatorState;
-      this.restApiService.updateRoomById(room, room.id)
-        .subscribe(
-          (_success) => console.log(room.radiatorState),
-          (error) => console.log(error),
-          () => {}
-        );
-      });
-    this.globalRadiatorState == true ? this.globalRadiatorState = false : this.globalRadiatorState = true;
+      room.radiatorForcedDown = !room.radiatorForcedDown;
+      this.restApiService.updateRoomById(room, room.id).subscribe(
+      () => { this.getRooms(); }
+      )
+    });
   }
 
   sliderChange(): void {
