@@ -18,18 +18,6 @@ public class DailyStatistics {
     @ManyToOne
     private Room room;
 
-    public DailyStatistics() {
-    }
-
-    public DailyStatistics(Long ID, double radiatorOnTimeInSeconds, double lightOnTimeInSeconds, double powerConsumption, LocalDate date, Room room) {
-        this.ID = ID;
-        this.radiatorOnTimeInSeconds = radiatorOnTimeInSeconds;
-        this.lightOnTimeInSeconds = lightOnTimeInSeconds;
-        this.powerConsumption = powerConsumption;
-        this.date = date;
-        this.room = room;
-    }
-
     public Long getID() {
         return ID;
     }

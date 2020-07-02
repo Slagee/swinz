@@ -2,7 +2,6 @@ package com.swinz.swinz.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -25,23 +24,11 @@ public class Report {
     public Report() {
     }
 
-    public Report(Long ID, boolean radiatorState, boolean lightState, LocalTime reportTime) {
+    public Report(long ID, boolean radiatorState, boolean lightState, LocalTime reportTime) {
         this.ID = ID;
         this.radiatorState = radiatorState;
         this.lightState = lightState;
         this.reportTime = reportTime;
-    }
-
-    public Report(Long ID, LocalDateTime reportDateTime, Double currentTemperature, Double selectedTemperature,
-                  double powerConsumption, boolean radiatorState, boolean lightState, LocalTime reportTime, Room room) {
-        this.ID = ID;
-        this.currentTemperature = currentTemperature;
-        this.selectedTemperature = selectedTemperature;
-        this.powerConsumption = powerConsumption;
-        this.radiatorState = radiatorState;
-        this.lightState = lightState;
-        this.reportTime = reportTime;
-        this.room = room;
     }
 
     public Long getID() {
