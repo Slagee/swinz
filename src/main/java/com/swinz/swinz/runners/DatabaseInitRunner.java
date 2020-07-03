@@ -31,12 +31,14 @@ public class DatabaseInitRunner implements CommandLineRunner {
         List<Room> roomList = new ArrayList<>();
         Room room1 = new Room();
         room1.setSelectedTemperature(22.0);
+        room1.setCurrentTemperature(18);
         room1.setName("Room1");
         roomService.addRoom(room1);
         roomList.add(room1);
 
         Room room2 = new Room();
         room2.setSelectedTemperature(23.0);
+        room2.setCurrentTemperature(17.5);
         room2.setName("Room2");
         roomService.addRoom(room2);
         roomList.add(room2);
