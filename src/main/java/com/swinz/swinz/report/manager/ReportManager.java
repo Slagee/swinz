@@ -4,7 +4,6 @@ import com.swinz.swinz.manager.TemperatureManager;
 import com.swinz.swinz.model.Report;
 import com.swinz.swinz.model.Room;
 import com.swinz.swinz.report.generator.ReportGenerator;
-import com.swinz.swinz.service.DailyStatisticsService;
 import com.swinz.swinz.service.ReportService;
 import com.swinz.swinz.service.RoomService;
 import com.swinz.swinz.utils.Utils;
@@ -24,18 +23,16 @@ public class ReportManager {
     private final ReportService reportService;
     private final RoomService roomService;
     private final TemperatureManager temperatureManager;
-    private final DailyStatisticsService dailyStatisticsService;
 
     @Autowired
-    public ReportManager(ReportService reportService, RoomService roomService, TemperatureManager temperatureManager, DailyStatisticsService dailyStatisticsService) {
+    public ReportManager(ReportService reportService, RoomService roomService, TemperatureManager temperatureManager) {
         this.reportService = reportService;
         this.roomService = roomService;
         this.temperatureManager = temperatureManager;
-        this.dailyStatisticsService = dailyStatisticsService;
     }
 
     @Async
-    @Scheduled(fixedRate = 3000)
+    @Scheduled(cron = "0 0/3 * * * ?")
     public void createAndManageReport() {
         for (Room room : roomService.getAllRooms()) {
             Room roomWithGeneratedValues = ReportGenerator.generateRoomSensorValues(room);

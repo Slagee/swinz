@@ -40,7 +40,7 @@ public class DailyStatisticsCreator {
     //        sec min hour dom month dow
     @Async
     @Transactional
-    @Scheduled(cron = "0 0/1 * * * *")
+    @Scheduled(cron = "1 0 0 * * ?")
     public void createDailyStatistics() {
         LocalDate yesterdayDate = LocalDate.now().minusDays(1);
         for (Room room : roomService.getAllRooms()) {
@@ -54,9 +54,18 @@ public class DailyStatisticsCreator {
             dailyStatistics.setDate(yesterdayDate);
             dailyStatistics.setLightOnTimeInSeconds(lightStateOnProcessor.getTotalTime(TimeTypeEnum.SECOND));
             dailyStatistics.setRadiatorOnTimeInSeconds(radiatorStateOnProcessor.getTotalTime(TimeTypeEnum.SECOND));
+            dailyStatistics.setPowerConsumption(getTotalPowerConsumption(dailyReports));
 
             dailyStatisticsService.addDailyStatistics(dailyStatistics);
         }
         reportService.deleteReportsByLocalDate(yesterdayDate);
+    }
+
+    private int getTotalPowerConsumption(List<Report> reportList) {
+        int returnedSum = 0;
+        for (Report report : reportList) {
+            returnedSum += report.getPowerConsumption();
+        }
+        return returnedSum;
     }
 }
