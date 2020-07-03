@@ -3,7 +3,6 @@ package com.swinz.swinz.runners;
 import com.swinz.swinz.model.DailyStatistics;
 import com.swinz.swinz.model.Room;
 import com.swinz.swinz.service.DailyStatisticsService;
-import com.swinz.swinz.service.ReportService;
 import com.swinz.swinz.service.RoomService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,14 +18,12 @@ public class DatabaseInitRunner implements CommandLineRunner {
 
     private final RoomService roomService;
     private final DailyStatisticsService dailyStatisticsService;
-    private final ReportService reportService;
 
     Random r = new Random();
 
-    public DatabaseInitRunner(RoomService roomService, DailyStatisticsService dailyStatisticsService, ReportService reportService) {
+    public DatabaseInitRunner(RoomService roomService, DailyStatisticsService dailyStatisticsService) {
         this.roomService = roomService;
         this.dailyStatisticsService = dailyStatisticsService;
-        this.reportService = reportService;
     }
 
     @Override
