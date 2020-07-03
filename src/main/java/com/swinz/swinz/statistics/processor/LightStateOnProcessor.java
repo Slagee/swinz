@@ -27,7 +27,7 @@ public class LightStateOnProcessor extends ReportProcessor {
     }
 
     @Override
-    protected boolean isReadyForCalculation() {
+    public boolean isReadyForCalculation() {
         return reportStack.isFull() && !reportStack.getSecond().getLightState();
     }
 

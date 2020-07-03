@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
     
     this.chartSetting();
-    this.timer = interval(5000).subscribe(_x => this.getRooms());
+    this.timer = interval(30000).subscribe(_x => this.getRooms());
   }
 
   getRooms(): void {

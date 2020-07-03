@@ -9,11 +9,11 @@ import java.util.List;
 
 @Repository
 public interface ReportRepository extends CrudRepository<Report, Long> {
-    List<Report> findByRoomID(Long id);
+    List<Report> findByRoomID(long id);
 
     List<Report> findReportsByReportDate(LocalDate date);
 
-    List<Report> findReportsByReportDateAndRoom_ID(LocalDate date, Long roomID);
+    List<Report> findReportsByReportDateAndRoom_ID(LocalDate date, long roomID);
 
     void deleteReportsByReportDate(LocalDate date);
 }

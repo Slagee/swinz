@@ -1,20 +1,21 @@
-package com.swinz.swinz.service;
+package com.swinz.swinz.statistics;
 
 import com.swinz.swinz.model.DailyStatistics;
+import com.swinz.swinz.service.DailyStatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
 
-@Service
-public class StatisticsPseudoService {
+@Component
+public class StatisticsUtil {
 
     private final DailyStatisticsService dailyStatisticsService;
 
     @Autowired
-    public StatisticsPseudoService(DailyStatisticsService dailyStatisticsService) {
+    public StatisticsUtil(DailyStatisticsService dailyStatisticsService) {
         this.dailyStatisticsService = dailyStatisticsService;
     }
 
@@ -24,8 +25,8 @@ public class StatisticsPseudoService {
         return getLightStateInHours(dailyStatistics) / 7.0;
     }
 
-    public int getNumberOfDaysInYearWhenRadiatorWasOn() {
-        return getNumberOfDaysInYearWhenRadiatorWasOn(dailyStatisticsService.getAllDailyStatistics());
+    public int getNumberOfDaysWhenRadiatorWasOn() {
+        return getNumberOfDaysWhenRadiatorWasOn(dailyStatisticsService.getAllDailyStatistics());
     }
 
     public double getAverageLightStateByRoomIDAndMonthValue(long id, int monthValue) {
@@ -42,7 +43,7 @@ public class StatisticsPseudoService {
     }
 
     public int getNumberOfDaysInMonthWhenRadiatorWasOn(long roomID, int monthValue) {
-        return getNumberOfDaysInYearWhenRadiatorWasOn(dailyStatisticsService.getDailyStatisticsByRoomIDAndMonthValue(roomID, monthValue));
+        return getNumberOfDaysWhenRadiatorWasOn(dailyStatisticsService.getDailyStatisticsByRoomIDAndMonthValue(roomID, monthValue));
     }
 
     private double getLightStateInHours(List<DailyStatistics> dailyStatisticsList) {
@@ -53,7 +54,7 @@ public class StatisticsPseudoService {
         return summedLightStateInSeconds / 3600.0;
     }
 
-    private int getNumberOfDaysInYearWhenRadiatorWasOn(List<DailyStatistics> dailyStatistics) {
+    private int getNumberOfDaysWhenRadiatorWasOn(List<DailyStatistics> dailyStatistics) {
         int numberOfDaysWhenRadiatorWasOn = 0;
         for (DailyStatistics dailyStatistic : dailyStatistics) {
             if (dailyStatistic.getRadiatorOnTimeInSeconds() != 0) {

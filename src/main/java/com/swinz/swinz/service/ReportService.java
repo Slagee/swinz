@@ -46,10 +46,6 @@ public class ReportService {
         reportRepository.deleteById(id);
     }
 
-    public List<Report> getReportsByRoomID(Long id) {
-        return reportRepository.findByRoomID(id);
-    }
-
     public List<Report> getReportsByLocalDate(LocalDate localDate) {
         return reportRepository.findReportsByReportDate(localDate);
     }

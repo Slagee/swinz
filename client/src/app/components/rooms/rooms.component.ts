@@ -51,7 +51,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.timer = interval(10000).subscribe(_x => this.updateRooms());
+    this.timer = interval(30000).subscribe(_x => this.updateRooms());
     this.userRoom.selectedTemperature = 21.0;
     
   }
@@ -86,7 +86,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
     this.selectedRoom = room;
     this.sliderValue = this.selectedRoom.selectedTemperature;
     this.restApiService.getLightStatsByRoomId(this.selectedRoom.id).subscribe(
-      (x: number) => this.selectedRoom.lightWeeklyConsumption = x,
+      (x: number) => this.selectedRoom.lightWeeklyConsumption = Math.round(x),
       () => {}
     );
   }
