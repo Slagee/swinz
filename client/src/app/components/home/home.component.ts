@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const oneDay = 1000*60*60*24;
     const firstDay = new Date(new Date().getFullYear(), 0, 1).setHours(0,0,0);
     const today = new Date().setHours(0,0,0);
-    const lastDay = new Date(new Date().getFullYear(), 11, 0).setHours(0, 0, 0);
+    const lastDay = new Date(new Date().getFullYear(), 12, 0).setHours(0,0,0);
 
     const diffDays = Math.round(Math.abs((firstDay - today) / oneDay));
     const remainingDays = Math.round(Math.abs((today - lastDay) / oneDay));
@@ -109,6 +109,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.restApiService.getTotalDaysOfRadiatorOn().subscribe(
       (res: number) => {
+        console.log(remainingDays)
         this.doughnutChartData[0][0] = res;
         this.doughnutChartData[0][1] = diffDays - res;
         this.doughnutChartData[0][2] = remainingDays;
