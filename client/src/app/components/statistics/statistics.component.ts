@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { Room } from 'src/app/models/room.model';
@@ -8,7 +8,7 @@ import { Room } from 'src/app/models/room.model';
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss']
 })
-export class StatisticsComponent implements OnInit {
+export class StatisticsComponent implements OnInit, AfterViewInit {
 
   faHome = faHome;
 
@@ -21,8 +21,7 @@ export class StatisticsComponent implements OnInit {
   constructor(
     private readonly restApiService: RestApiService
   ) { }
-
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.restApiService.getAllRoomData().subscribe(
       (rooms: Array<Room>) => {
         this.roomsData = rooms;
@@ -37,29 +36,33 @@ export class StatisticsComponent implements OnInit {
           this.roomsData[i].monthlyRadiatorTime = [];
 
           this.months.forEach(month => {
-            this.restApiService.getMonthlyLight(this.roomsData[i].id, month.id).subscribe(
-              (res) => {
-                res = Math.round(res);
-                this.roomsData[i].monthlyLight.push(res);
+            this.restApiService.getMonthlyLight(this.roomsData[i].id, month.id).toPromise().then(
+              data => {
+                data = Math.round(data * 10) / 10;
+                this.roomsData[i].monthlyLight.push(data);
               }
             );
 
-            this.restApiService.getMonthlyPower(this.roomsData[i].id, month.id).subscribe(
-              (res) => {
-                res = Math.round(res);
-                this.roomsData[i].monthlyPowerConsumption.push(res);
+            this.restApiService.getMonthlyPower(this.roomsData[i].id, month.id).toPromise().then(
+              data => {
+                data = Math.round(data / 1000);
+                this.roomsData[i].monthlyPowerConsumption.push(data);
               }
             );
 
-            this.restApiService.getMonthlyRadiator(this.roomsData[i].id, month.id).subscribe(
-              (res) => {
-                res = Math.round(res);
-                this.roomsData[i].monthlyRadiatorTime.push(res);
+            this.restApiService.getMonthlyRadiator(this.roomsData[i].id, month.id).toPromise().then(
+              data => {
+                data = Math.round(data);
+                this.roomsData[i].monthlyRadiatorTime.push(data);
               }
             );
           });
         }
       }
     );
+  }
+
+  ngOnInit(): void {
+    
   }
 }
