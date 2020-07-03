@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class StatisticsUtil {
@@ -26,7 +28,13 @@ public class StatisticsUtil {
     }
 
     public int getNumberOfDaysWhenRadiatorWasOn() {
-        return getNumberOfDaysWhenRadiatorWasOn(dailyStatisticsService.getAllDailyStatistics());
+        Set<LocalDate> localDateSet = new HashSet<>();
+        for (DailyStatistics dailyStatistic : dailyStatisticsService.getAllDailyStatistics()) {
+            if (dailyStatistic.getRadiatorOnTimeInSeconds() != 0) {
+                localDateSet.add(dailyStatistic.getDate());
+            }
+        }
+        return localDateSet.size();
     }
 
     public double getAverageLightStateByRoomIDAndMonthValue(long id, int monthValue) {
