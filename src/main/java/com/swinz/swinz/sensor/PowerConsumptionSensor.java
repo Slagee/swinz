@@ -4,12 +4,12 @@ import com.swinz.swinz.model.Room;
 
 public class PowerConsumptionSensor {
     public static int generatePowerConsumption(Room room) {
-        int returned = 70;
+        int returned = 19;
         if (room.getLightState()) {
-            returned += 10;
+            returned += 2;
         }
         if (room.getRadiatorState()) {
-            returned += 10;
+            returned += 2;
         }
         return returned;
     }
